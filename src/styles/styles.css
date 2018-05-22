@@ -1,0 +1,9 @@
+.carta {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mdc-card__media {
+    width: 21rem;
+    height: 450px;
+}
