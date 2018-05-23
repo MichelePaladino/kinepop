@@ -23,12 +23,19 @@ import MovieCard from "./movieCard";
 
 
 const mapStateToProps = (state) => ({
-    movies: state.movies
+    movies: state.movies,
+    filters: state.filters
 });
+
+// const MovieCardList = (props) => (
+//     props.movies.map((movie, index) => (
+//         <MovieCard title={movie.title} year={movie.year} poster={movie.poster} key={index} />
+//     ))
+// );
 
 const MovieCardList = (props) => (
     props.movies.map((movie, index) => (
-        <MovieCard title={movie.title} year={movie.year} poster={movie.poster} key={index} />
+        movie.title.toLowerCase() === props.filters.title.toLowerCase() ? <MovieCard title={movie.title} year={movie.year} poster={movie.poster} key={index} /> : null
     ))
 );
 
