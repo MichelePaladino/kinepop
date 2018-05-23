@@ -1,14 +1,18 @@
 import React, { Component } from "react";
-import MovieCard from "./components/movieCard";
 
 import { Button } from "rmwc/Button";
 
+import MovieCardList from "./components/movieCardList";
+import MovieSearch from "./components/movieSearch"
+
 import "./styles/styles.css"
 
-
 const App = props => (
-  <div className="movieCardList">
-  <MovieCard /> <MovieCard /> <MovieCard /> <MovieCard />
+  <div>
+    <MovieSearch />
+    <div className="movieCardList">
+      <MovieCardList />
+    </div>
   </div>
 );
 

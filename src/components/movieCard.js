@@ -12,20 +12,20 @@ import {
 
 import { Typography } from "rmwc/Typography";
 
-const MovieCard = () => {
+const MovieCard = ( {title, year, poster } ) => {
   return (
     <Card style={{ width: "21rem", margin: "1rem" }}>
       <CardPrimaryAction>
         <CardMedia
-          
+        //   square
           style={{
             backgroundImage:
-              "url(https://image.tmdb.org/t/p/w300_and_h450_bestv2/to0spRl1CMDvyUbOnbb4fTk3VAd.jpg)"
+              `url(${poster})`
           }}
         />
         <div style={{ padding: "0 1rem 1rem 1rem" }}>
           <Typography use="headline6" tag="h2">
-            Our Changing Planet
+            {title}
           </Typography>
           <Typography
             use="subtitle2"
@@ -33,7 +33,7 @@ const MovieCard = () => {
             theme="text-secondary-on-background"
             style={{ marginTop: "-1rem" }}
           >
-            by Kurt Wagner
+            {year}
           </Typography>
           <Typography
             use="body1"

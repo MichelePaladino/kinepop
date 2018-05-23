@@ -1,6 +1,7 @@
-.carta {
+.movieCardList {
   display: flex;
   flex-wrap: wrap;
+  background-color: blue;
 }
 
 .mdc-card__media {
