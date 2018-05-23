@@ -20,5 +20,4 @@ const mapDispatchToProps = (dispatch) => ({
     onTitleChange: (e) => dispatch(startOnTitleChange(e))
 })
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(MovieSearch);

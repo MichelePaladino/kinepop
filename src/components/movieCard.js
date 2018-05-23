@@ -12,15 +12,15 @@ import {
 
 import { Typography } from "rmwc/Typography";
 
-const MovieCard = ( {title, year, poster } ) => {
+const MovieCard = ( {title, year, poster, id } ) => {
   return (
     <Card style={{ width: "21rem", margin: "1rem" }}>
       <CardPrimaryAction>
         <CardMedia
         //   square
           style={{
-            backgroundImage:
-              `url(${poster})`
+            backgroundImage: `url(https://image.tmdb.org/t/p/w300_and_h450_bestv2/${poster})`,
+            height: "30rem"
           }}
         />
         <div style={{ padding: "0 1rem 1rem 1rem" }}>
