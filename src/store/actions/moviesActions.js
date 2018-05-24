@@ -8,3 +8,14 @@ export const startSetLatestMovies = (movies) => {
         dispatch(setLatestMovies(movies))
     }
 }
+
+export const setSearchMovie = (movies) => ({
+    type: "SET_SEARCH_MOVIE",
+    movies
+})
+
+export const startSetSearchMovie = (movies) => {
+    return (dispatch) => {
+        dispatch(setSearchMovie(movies))
+    }
+}

@@ -6,6 +6,10 @@ const moviesReducer = (state=initialState, action) => {
             return [
                 ...state,
                 ...action.movies
+            ];
+        case 'SET_SEARCH_MOVIE':
+            return [
+                ...action.movies
             ]
         default:
         return state
