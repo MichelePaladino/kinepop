@@ -11,7 +11,8 @@
     "redux": "^4.0.0",
     "redux-devtools": "^3.4.1",
     "redux-thunk": "^2.2.0",
-    "rmwc": "^1.6.3"
+    "rmwc": "^1.6.3",
+    "uuid": "^3.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
