@@ -1,7 +1,40 @@
+/* * {
+  box-sizing: border-box;
+} */
+
+/* html {
+  font-size: 62.5%;
+} */
+
+.header {
+  padding-bottom: 5.1rem;
+
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+ 
+  /* justify-content: center;
+  align-items: center;
+  margin: 0 auto; */
+  /* padding: 4.2rem 0rem; */
+  /* max-width: 80rem; */
+}
+
+.movieSearch {
+  margin: 0 5rem;
+  z-index: -1;
+}
+
 .movieCardList {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   background-color: white;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  z-index: -1;
 }
 
 /* .mdc-card__media {

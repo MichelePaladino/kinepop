@@ -19,6 +19,32 @@ export class MovieCardList extends Component {
         return this.props.filters.title !== nextProps.filters.title || this.props.movies.listMovies !== nextProps.movies.listMovies
     }
 
+    handleFavClick = (e) => {
+        console.log("movieCardList: handleFavClick AGGIUNGO/TOLGO dal DB", "eventDetail:", e.detail)
+    }
+
+
+
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log("ShouldComponentUpdate?");
+    //     if (this.props.movies.latestMovies === false) {
+    //         console.log("primo if");
+    //         return this.props.filters.title !== nextProps.filters.title
+    //     }
+    //     if (this.props.movies.latestMovies === true && nextProps.movies.infiniteScrollPage !== 1) {
+    //         console.log("secondo if")
+    //         console.log("this.props.movies.listMovies.slice(-20):", this.props.movies.listMovies.slice(-20));
+    //         console.log("nextProps.movies.listMovies:", nextProps.movies.listMovies.slice(-20));
+    //         let primo = this.props.movies.listMovies.slice(-20)[19].id; 
+    //         let secondo = nextProps.movies.listMovies.slice(-20)[19].id;
+    //         console.log("primo", primo, "secondo", secondo)
+    //         return primo !== secondo;
+    //     }
+    //     else {
+    //         return true;
+    //     }
+    // }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log("from movieCardList.js: componentDidUpdate");
         prevProps.filters.title !== this.props.filters.title && this.props.filters.title !== "" &&
@@ -30,7 +56,9 @@ export class MovieCardList extends Component {
         return (
             this.props.movies.listMovies.map((movie, index) => {
                 !movie.poster_path ? movie.poster_path="4Ll653TYNjXaKlYGmiPRr236Vhi.jpg" : movie.poster_path=movie.poster_path;
-                return <MovieCard title={movie.title} year={movie.release_date} rating={movie.vote_average} poster={movie.poster_path} key={uuid()} id={movie.id} overview={movie.overview}/>
+                // movie.id is in database THEN inDataBase=true ELSE false
+                let check = movie.id ? true : false; 
+                return <MovieCard onFavClick={this.handleFavClick} inDatabase={check} title={movie.title} year={movie.release_date} rating={movie.vote_average} poster={movie.poster_path} key={uuid()} id={movie.id} overview={movie.overview}/>
             })
         )
     }
