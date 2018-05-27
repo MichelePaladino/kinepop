@@ -4,23 +4,23 @@ import { Drawer, DrawerHeader, DrawerContent } from "rmwc/Drawer";
 
 import { ListItem, ListItemText } from "rmwc/List";
 
-const sideDrawer = () => {
+const sideDrawer = ({state, toggle}) => {
   return (
     <Drawer
       temporary
-      open={this.state.tempOpen}
-      onClose={() => this.setState({ tempOpen: false })}
+      open={state}
+      onClose={() => toggle()}
     >
-      <DrawerHeader>DrawerHeader</DrawerHeader>
+      <DrawerHeader>DummyHeader</DrawerHeader>
       <DrawerContent>
         <ListItem>
-          <ListItemText>Cookies</ListItemText>
+          <ListItemText>1</ListItemText>
         </ListItem>
         <ListItem>
-          <ListItemText>Pizza</ListItemText>
+          <ListItemText>2</ListItemText>
         </ListItem>
         <ListItem>
-          <ListItemText>Icecream</ListItemText>
+          <ListItemText>3</ListItemText>
         </ListItem>
       </DrawerContent>
     </Drawer>

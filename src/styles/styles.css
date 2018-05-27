@@ -7,11 +7,16 @@
 } */
 
 .header {
-  padding-bottom: 5.1rem;
-
+  /* padding-bottom: 5.1rem; */
+  /* position: fixed; */
+  z-index: 1000;
+  position: fixed;
+  /* top: 0px; */
+  /* width: 100%; */
 }
 
 .content-container {
+  padding-top: 5rem;
   display: flex;
   flex-direction: column;
  
@@ -24,7 +29,7 @@
 
 .movieSearch {
   margin: 0 5rem;
-  z-index: -1;
+  /* z-index: -1; */
 }
 
 .movieCardList {
@@ -34,7 +39,7 @@
   background-color: white;
   justify-content: space-evenly;
   margin: 0 auto;
-  z-index: -1;
+  /* z-index: -1; */
 }
 
 /* .mdc-card__media {

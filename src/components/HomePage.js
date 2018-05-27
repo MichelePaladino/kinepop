@@ -11,6 +11,7 @@ import { startSetLatestMovies } from "../store/actions/moviesActions";
 import { startSetSearchMovie } from "../store/actions/moviesActions";
 import { resetPage } from "../store/actions/moviesActions" ;
 import { startSearchMoreMovie } from "../store/actions/moviesActions" ;
+import { toggleSideDrawer } from "../store/actions/uiActions"
 
 import "../styles/styles.css"
 
@@ -55,13 +56,18 @@ class HomePage extends Component {
     }
 
     handleOnNav = (e) => {
-        console.log("handleOnNav dentro HOMEPAGE.js")
+        this.props.toggleSideDrawer()
     }
 
+
     render() {
+        let sideDrawer = this.props.ui.sideDrawer;
+        sideDrawer = sideDrawer ? <SideDrawer state={this.props.ui.sideDrawer} toggle={this.props.toggleSideDrawer}/> : null;
+        console.log("sideDrawer = sideDrawer ? <SideDrawer/> : null --->", sideDrawer)
+
         return (
         <div>
-            <SideDrawer />
+            {sideDrawer}
             <div className="header">
                 <Header onNav={this.handleOnNav}/>
             </div>
@@ -80,14 +86,16 @@ class HomePage extends Component {
 
 const mapStateToProps = (state) => ({
     movies: state.movies,
-    filters: state.filters
+    filters: state.filters,
+    ui: state.ui
 })
 
 const mapDispatchToProps = (dispatch) => ({
     startSetLatestMovies: (movies) => dispatch(startSetLatestMovies(movies)),
     startSetSearchMovie: (movies) => dispatch(startSetSearchMovie(movies)),
     resetPage: () => dispatch(resetPage()),
-    startSearchMoreMovie: (movies) => dispatch(startSearchMoreMovie(movies))
+    startSearchMoreMovie: (movies) => dispatch(startSearchMoreMovie(movies)),
+    toggleSideDrawer: () => dispatch(toggleSideDrawer())
 })
 
 
