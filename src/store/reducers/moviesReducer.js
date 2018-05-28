@@ -1,6 +1,6 @@
 const initialState = {
-    listMovies: [],
-    latestMovies: false,
+    moviesList: [],
+    moviesMode: '',
     infiniteScrollPage: 0
 };
 
@@ -9,10 +9,10 @@ const moviesReducer = (state=initialState, action) => {
         case 'SET_LATEST_MOVIES':
             return {
                 ...state,
-                latestMovies: true,
+                moviesMode: 'latest',
                 infiniteScrollPage: state.infiniteScrollPage + 1,
-                listMovies: [
-                    ...state.listMovies, 
+                moviesList: [
+                    ...state.moviesList, 
                     ...action.movies
                 ],
             };
@@ -20,8 +20,8 @@ const moviesReducer = (state=initialState, action) => {
             return {
                 ...state,
                 infiniteScrollPage: 1,
-                latestMovies: false,
-                listMovies: [
+                moviesMode: 'search',
+                moviesList: [
                     ...action.movies
                 ]
             }
@@ -29,9 +29,9 @@ const moviesReducer = (state=initialState, action) => {
             return {
                 ...state,
                 infiniteScrollPage: state.infiniteScrollPage + 1,
-                latestMovies: false,
-                listMovies: [
-                    ...state.listMovies, 
+                moviesMode: 'search',
+                moviesList: [
+                    ...state.moviesList, 
                     ...action.movies
                 ] 
             }           
@@ -39,8 +39,8 @@ const moviesReducer = (state=initialState, action) => {
             return {
                 ...state,
                 infiniteScrollPage: 1,
-                listMovies: [
-                    ...state.listMovies
+                moviesList: [
+                    ...state.moviesList
                 ]
             };
         default:

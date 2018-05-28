@@ -4,13 +4,10 @@ import axios from "axios";
 
 import MovieCardList from "./movieCardList";
 import MovieSearch from "./movieSearch";
-import Header from "./header";
-import SideDrawer from "./sideDrawer"
+import Header from "./Header";
+// import SideDrawer from "./SideDrawer"
 
-import { startSetLatestMovies } from "../store/actions/moviesActions";
-import { startSetSearchMovie } from "../store/actions/moviesActions";
-import { resetPage } from "../store/actions/moviesActions" ;
-import { startSearchMoreMovie } from "../store/actions/moviesActions" ;
+import { startSetLatestMovies, startSetSearchMovie, startSearchMoreMovie, resetPage } from "../store/actions/moviesActions";
 import { toggleSideDrawer } from "../store/actions/uiActions"
 
 import "../styles/styles.css"
@@ -19,13 +16,13 @@ class HomePage extends Component {
     componentDidMount() {
         console.log("from HomePage.js: componentDidMount");
         window.addEventListener('scroll', this.handleScroll, { passive: true });
-
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log("from HomePage.js: componentDidUpdate");
-        if (prevProps.movies.latestMovies !== this.props.movies.latestMovies) {
-            this.props.resetPage()
+        if (prevProps.movies.moviesMode !== this.props.movies.moviesMode) {
+            this.props.resetPage();
+            console.log("from HomePage.js: resetPage()");
         }
     }
 
@@ -44,45 +41,46 @@ class HomePage extends Component {
         let page = this.props.movies.infiniteScrollPage;
 
         // scrollTop >= (scrollHeight * 0.8) ? THIS FIRES TOO MUCH ACTIONS
-        clientHeight + scrollTop === scrollHeight ?
-            (
-                this.props.movies.latestMovies === true ? 
-                    axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&page=${page+1}`)
+        if (clientHeight + scrollTop === scrollHeight && this.props.movies.moviesMode === 'latest') {
+            axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&page=${page+1}`)
                         .then(response => this.props.startSetLatestMovies(response.data.results)) 
-                : 
-                    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&query=${this.props.filters.title}&page=${page+1}`)
-                        .then(response => this.props.startSearchMoreMovie(response.data.results)) 
-            ) : null               
+        }
+        else if (clientHeight + scrollTop === scrollHeight && this.props.movies.moviesMode === 'search') {
+            axios.get(`https://api.themoviedb.org/3/search/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&query=${this.props.filters.title}&page=${page+1}`)
+            .then(response => this.props.startSearchMoreMovie(response.data.results))
+        }     
     }
 
-    handleOnNav = (e) => {
-        this.props.toggleSideDrawer()
-    }
-
+    // handleOnNav = (e) => {
+    //     this.props.toggleSideDrawer()
+    // }
 
     render() {
-        let sideDrawer = this.props.ui.sideDrawer;
-        sideDrawer = sideDrawer ? <SideDrawer state={this.props.ui.sideDrawer} toggle={this.props.toggleSideDrawer}/> : null;
-        console.log("sideDrawer = sideDrawer ? <SideDrawer/> : null --->", sideDrawer)
+        // let sideDrawer = this.props.ui.sideDrawer;
+        // sideDrawer = sideDrawer ? <SideDrawer state={this.props.ui.sideDrawer} toggle={this.props.toggleSideDrawer}/> : null;
 
         return (
         <div>
-            {sideDrawer}
-            <div className="header">
-                <Header onNav={this.handleOnNav}/>
-            </div>
+            {/* {sideDrawer} */}
             <div className="content-container">
                 <div className="movieSearch">
                     <MovieSearch />
                 </div>
                 <div className="movieCardList">
-                    <MovieCardList onScroll={(e) => this.handleScroll(e)}/>
+                    <MovieCardList onScroll={(e) => this.handleScroll(e)} mode={this.props.match.params.mode}/>
                 </div>
             </div>
         </div>
         )
     }
 } 
+
+/* <Route path="/" component={landingPage} exact/>
+<Route path="/movies/:mode" component={HomePage}/> */
+
+// ANYTHING past /Movies/ must be passed as a prop to MovieCardList SO IT CAN ASK TO API DINAMYCALLY
+// localhost:8080/movies/:mode
+// this.props.match.params.mode
 
 const mapStateToProps = (state) => ({
     movies: state.movies,

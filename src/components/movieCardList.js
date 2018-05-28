@@ -11,39 +11,26 @@ import { startSetSearchMovie } from "../store/actions/moviesActions"
 export class MovieCardList extends Component {
     componentDidMount() {
         console.log("from movieCardList.js: componentDidMount");
-        axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=c0ba1f468f4848a2eb2a4855af9c31d8`)
+        // THIS REQUEST MUST DEPEND FROM THE "path='/..." OF ROUTE WHICH CONTAINS HomePage.js"
+        // IF PATH === latest THEN
+        if (this.props.mode === 'latest') {
+            axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=c0ba1f468f4848a2eb2a4855af9c31d8`)
             .then(response => this.props.startSetLatestMovies(response.data.results))
+        }
+
+        // IF PATH === 2016 THEN
+            //axiox.get('2016).then(dispatch(startSet2016Movies))
+
+        // passed here as this.props.path  (can be: latest, 2016, 2015...)
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return this.props.filters.title !== nextProps.filters.title || this.props.movies.listMovies !== nextProps.movies.listMovies
+        return this.props.filters.title !== nextProps.filters.title || this.props.movies.moviesList !== nextProps.movies.moviesList
     }
 
     handleFavClick = (e) => {
         console.log("movieCardList: handleFavClick AGGIUNGO/TOLGO dal DB", "eventDetail:", e.detail)
     }
-
-
-
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     console.log("ShouldComponentUpdate?");
-    //     if (this.props.movies.latestMovies === false) {
-    //         console.log("primo if");
-    //         return this.props.filters.title !== nextProps.filters.title
-    //     }
-    //     if (this.props.movies.latestMovies === true && nextProps.movies.infiniteScrollPage !== 1) {
-    //         console.log("secondo if")
-    //         console.log("this.props.movies.listMovies.slice(-20):", this.props.movies.listMovies.slice(-20));
-    //         console.log("nextProps.movies.listMovies:", nextProps.movies.listMovies.slice(-20));
-    //         let primo = this.props.movies.listMovies.slice(-20)[19].id; 
-    //         let secondo = nextProps.movies.listMovies.slice(-20)[19].id;
-    //         console.log("primo", primo, "secondo", secondo)
-    //         return primo !== secondo;
-    //     }
-    //     else {
-    //         return true;
-    //     }
-    // }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log("from movieCardList.js: componentDidUpdate");
@@ -54,7 +41,7 @@ export class MovieCardList extends Component {
 
     render () {
         return (
-            this.props.movies.listMovies.map((movie, index) => {
+            this.props.movies.moviesList.map((movie, index) => {
                 !movie.poster_path ? movie.poster_path="4Ll653TYNjXaKlYGmiPRr236Vhi.jpg" : movie.poster_path=movie.poster_path;
                 // movie.id is in database THEN inDataBase=true ELSE false
                 let check = movie.id ? true : false; 
