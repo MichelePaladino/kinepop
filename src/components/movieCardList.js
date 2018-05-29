@@ -5,17 +5,21 @@ import uuid from "uuid";
 
 import MovieCard from "./movieCard";
 
-import { startSetLatestMovies } from "../store/actions/moviesActions";
-import { startSetSearchMovie } from "../store/actions/moviesActions"
+import { startSetLatestMovies, resetPage, startSetSearchMovie, startSetPopularMovies } from "../store/actions/moviesActions";
 
 export class MovieCardList extends Component {
     componentDidMount() {
+        this.props.resetPage();
         console.log("from movieCardList.js: componentDidMount");
         // THIS REQUEST MUST DEPEND FROM THE "path='/..." OF ROUTE WHICH CONTAINS HomePage.js"
         // IF PATH === latest THEN
         if (this.props.mode === 'latest') {
             axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=c0ba1f468f4848a2eb2a4855af9c31d8`)
             .then(response => this.props.startSetLatestMovies(response.data.results))
+        }
+        else if (this.props.mode === 'popular') {
+            axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=c0ba1f468f4848a2eb2a4855af9c31d8`)
+            .then(response => this.props.startSetPopularMovies(response.data.results))
         }
 
         // IF PATH === 2016 THEN
@@ -24,9 +28,9 @@ export class MovieCardList extends Component {
         // passed here as this.props.path  (can be: latest, 2016, 2015...)
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return this.props.filters.title !== nextProps.filters.title || this.props.movies.moviesList !== nextProps.movies.moviesList
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     return this.props.filters.title !== nextProps.filters.title && this.props.movies.moviesList !== nextProps.movies.moviesList;
+    // }
 
     handleFavClick = (e) => {
         console.log("movieCardList: handleFavClick AGGIUNGO/TOLGO dal DB", "eventDetail:", e.detail)
@@ -34,9 +38,11 @@ export class MovieCardList extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log("from movieCardList.js: componentDidUpdate");
-        prevProps.filters.title !== this.props.filters.title && this.props.filters.title !== "" &&
-        axios.get(`https://api.themoviedb.org/3/search/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&query=${this.props.filters.title}`)
-            .then(response => this.props.setSearchMovie(response.data.results))
+        if (prevProps.filters.title !== this.props.filters.title && this.props.filters.title !== "") {
+            axios.get(`https://api.themoviedb.org/3/search/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&query=${this.props.filters.title}`)
+            .then(response => this.props.startSetSearchMovie(response.data.results))
+        }       
+        // NEW THIS.PROPS.MODE (---> new request)
     }
 
     render () {
@@ -58,7 +64,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     startSetLatestMovies: (movies) => dispatch(startSetLatestMovies(movies)),
-    setSearchMovie: (movies) => dispatch(startSetSearchMovie(movies))
+    startSetSearchMovie: (movies) => dispatch(startSetSearchMovie(movies)),
+    startSetPopularMovies: (movies) => dispatch(startSetPopularMovies(movies)),
+    resetPage: () => dispatch(resetPage()),
 })
 
 

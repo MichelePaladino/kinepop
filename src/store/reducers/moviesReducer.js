@@ -34,14 +34,23 @@ const moviesReducer = (state=initialState, action) => {
                     ...state.moviesList, 
                     ...action.movies
                 ] 
-            }           
+            }     
+        case 'SET_POPULAR_MOVIES':
+            return {
+                ...state,
+                moviesMode: 'popular',
+                infiniteScrollPage: state.infiniteScrollPage +1,
+                moviesList: [
+                    ...state.moviesList,
+                    ...action.movies
+                ]
+            }      
         case 'RESET_PAGE':
             return {
                 ...state,
-                infiniteScrollPage: 1,
-                moviesList: [
-                    ...state.moviesList
-                ]
+                moviesMode: '',
+                infiniteScrollPage: 0,
+                moviesList: []
             };
         default:
         return state

@@ -2,6 +2,13 @@
   box-sizing: border-box;
 } */
 
+/* .mdc-typography {
+  color: red;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.6;
+} */
+
 /* html {
   font-size: 62.5%;
 } */
@@ -15,6 +22,15 @@
   /* width: 100%; */
 }
 
+.header__title {
+  color: white;
+  text-decoration: none;
+  /* h1 {
+    margin: 0;
+  } */
+}
+
+
 .content-container {
   padding-top: 5rem;
   display: flex;
@@ -25,6 +41,47 @@
   margin: 0 auto; */
   /* padding: 4.2rem 0rem; */
   /* max-width: 80rem; */
+}
+
+
+/* .mdc-drawer--temporary .mdc-drawer__content {
+    color: red;
+    padding-top: 5rem;
+
+} */
+
+.Drawer {
+  color: red;
+  padding-top: 3.5rem;
+  
+}
+
+.Drawer .Drawer__Content {
+  color: red;
+}
+
+
+.Grid {
+  border: 0.5rem solid black;
+}
+
+.mdc-layout-grid__cell {
+  border: 0.5rem solid red;
+}
+
+.Link {
+  text-decoration: none;
+  color: orange;
+}
+
+
+
+/* .mdc-drawer {
+  background-color: blue;
+} */
+
+.MovieInfo {
+  padding-top: 10rem;
 }
 
 .movieSearch {

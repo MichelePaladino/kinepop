@@ -34,3 +34,15 @@ export const startSearchMoreMovie = (movies) => {
         dispatch(searchMoreMovie(movies))
     }
 }
+
+export const setPopularMovies = (movies) => ({
+    type: "SET_POPULAR_MOVIES",
+    movies
+})
+
+export const startSetPopularMovies = (movies) => {
+    return (dispatch) => {
+        dispatch(setPopularMovies(movies))
+    }
+}
+

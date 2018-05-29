@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, Redirect } from "react-router-dom";
 
 import {
   Card,
@@ -16,7 +17,7 @@ import { Icon } from 'rmwc/Icon';
 const MovieCard = ( {title, year, poster, id, overview, rating, onFavClick, inDatabase } ) => {
   return (
     <Card style={{ width: "21rem", margin: "1rem" }}>
-      <CardPrimaryAction>
+      <Link className="Link" to={`/movies/movie/${id}`}><CardPrimaryAction>
         <CardMedia
         //   square
           style={{
@@ -44,7 +45,7 @@ const MovieCard = ( {title, year, poster, id, overview, rating, onFavClick, inDa
             {overview.length >= 160 ? overview.slice(0, 160).concat("...") : overview}
           </Typography>
         </div>
-      </CardPrimaryAction>
+      </CardPrimaryAction></Link>
       <CardActions >
         <CardActionButtons>
           <CardAction

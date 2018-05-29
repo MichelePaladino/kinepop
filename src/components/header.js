@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-import { startSetLatestMovies, startSetSearchMovie, startSearchMoreMovie, resetPage } from "../store/actions/moviesActions";
-import { startToggleSideDrawer } from "../store/actions/uiActions"
+// import { startSetLatestMovies, startSetSearchMovie, startSearchMoreMovie, resetPage } from "../store/actions/moviesActions";
+import { openSideDrawer } from "../store/actions/uiActions"
 
 import {
     TopAppBar,
@@ -14,18 +15,18 @@ import {
   } from 'rmwc/TopAppBar';
   
 class Header extends Component {
-  // handleOnNav = (e) => {
-  //   this.props.toggleSideDrawer()
-  // };
+  componentDidUpdate() {
+    console.log("from Header.js --> componentDidUpdate")
+  }
 
   render() {
-    console.log("Header.js || render()")
+
     return (
-      <TopAppBar fixed onNav={(e) => this.props.startToggleSideDrawer(e)}>
+      <TopAppBar fixed onNav={(e) => this.props.openSideDrawer(e)}>
             <TopAppBarRow>
               <TopAppBarSection alignStart>
                 <TopAppBarNavigationIcon use="menu" />
-                <TopAppBarTitle>Title</TopAppBarTitle>
+                <TopAppBarTitle><Link className="header__title" to="/">KinePOP</Link></TopAppBarTitle>
               </TopAppBarSection>
               <TopAppBarSection alignEnd>
                 <TopAppBarActionItem aria-label="Download" alt="Download">
@@ -50,18 +51,17 @@ class Header extends Component {
   }
 };
 
-const mapStateToProps = (state) => ({
-  movies: state.movies,
-  filters: state.filters,
-  ui: state.ui
-})
+// const mapStateToProps = (state) => ({
+//   movies: state.movies,
+//   filters: state.filters,
+// })
 
 const mapDispatchToProps = (dispatch) => ({
-  startSetLatestMovies: (movies) => dispatch(startSetLatestMovies(movies)),
-  startSetSearchMovie: (movies) => dispatch(startSetSearchMovie(movies)),
-  resetPage: () => dispatch(resetPage()),
-  startSearchMoreMovie: (movies) => dispatch(startSearchMoreMovie(movies)),
-  startToggleSideDrawer: () => dispatch(startToggleSideDrawer())
+  // startSetLatestMovies: (movies) => dispatch(startSetLatestMovies(movies)),
+  // startSetSearchMovie: (movies) => dispatch(startSetSearchMovie(movies)),
+  // resetPage: () => dispatch(resetPage()),
+  // startSearchMoreMovie: (movies) => dispatch(startSearchMoreMovie(movies)),
+  openSideDrawer: () => dispatch(openSideDrawer()),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(undefined, mapDispatchToProps)(Header);

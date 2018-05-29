@@ -1,34 +1,50 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
 
-import { startSetLatestMovies, startSetSearchMovie, startSearchMoreMovie, resetPage } from "../store/actions/moviesActions";
-import { startToggleSideDrawer } from "../store/actions/uiActions"
 
 import { Drawer, DrawerHeader, DrawerContent } from "rmwc/Drawer";
 import { ListItem, ListItemText } from "rmwc/List";
 
+import { Typography } from "rmwc/Typography";
+import { Icon } from 'rmwc/Icon';
+
+
+import { closeSideDrawer } from "../store/actions/uiActions"
 
 class SideDrawer extends Component {
+  // shouldComponentUpdate(nextProps) {
+  //   return this.props.ui.sideDrawer !== true;
+  // }
+
+  componentDidUpdate() {
+    console.log("from sideDrawer.js --> componentDidUpdate")
+  }
 
   render () {
-    console.log("SideDrawer.js || render()")
+    // if(this.props.ui.sideDrawer === false) {
+    //   return null;
+    // }
+    console.log("from sideDrawer.js --> render()")
     return (
       <Drawer
         temporary
         open={this.props.ui.sideDrawer}
-        onClose={() => this.props.startToggleSideDrawer()}
+        // onClose={(e) => this.props.closeSideDrawer(e)}
+        onClick={(e) => this.props.closeSideDrawer(e)}
+        className="Drawer"
       >
-        <DrawerHeader>DummyHeader</DrawerHeader>
-        <DrawerContent>
-          <ListItem>
-            <ListItemText>1</ListItemText>
-          </ListItem>
-          <ListItem>
-            <ListItemText>2</ListItemText>
-          </ListItem>
-          <ListItem>
-            <ListItemText>3</ListItemText>
-          </ListItem>
+        {/* <DrawerHeader><Typography use="headline4" tag="h2">TITOLO</Typography></DrawerHeader> */}
+        <DrawerContent className="Drawer__Content">
+          <Link className='Link' to="/movies/latest/">
+            <ListItem><ListItemText><Icon strategy="ligature" use="star" />Latest</ListItemText></ListItem>
+          </Link>
+          <Link className="Link" to="/">
+            <ListItem><ListItemText>Go to the LandingPage</ListItemText></ListItem>
+          </Link>
+          <Link className="Link" to="/movies/popular/">
+            <ListItem><ListItemText>Go to Popular Movies</ListItemText></ListItem>
+          </Link>
         </DrawerContent>
       </Drawer>
     )
@@ -36,42 +52,12 @@ class SideDrawer extends Component {
 }
 
 
-// const sideDrawer = ({state, toggle}) => {
-//   return (
-//     <Drawer
-//       temporary
-//       open={state}
-//       onClose={() => toggle()}
-//     >
-//       <DrawerHeader>DummyHeader</DrawerHeader>
-//       <DrawerContent>
-//         <ListItem>
-//           <ListItemText>1</ListItemText>
-//         </ListItem>
-//         <ListItem>
-//           <ListItemText>2</ListItemText>
-//         </ListItem>
-//         <ListItem>
-//           <ListItemText>3</ListItemText>
-//         </ListItem>
-//       </DrawerContent>
-//     </Drawer>
-//   );
-// };
-
-
 const mapStateToProps = (state) => ({
-  movies: state.movies,
-  filters: state.filters,
   ui: state.ui
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  startSetLatestMovies: (movies) => dispatch(startSetLatestMovies(movies)),
-  startSetSearchMovie: (movies) => dispatch(startSetSearchMovie(movies)),
-  resetPage: () => dispatch(resetPage()),
-  startSearchMoreMovie: (movies) => dispatch(startSearchMoreMovie(movies)),
-  startToggleSideDrawer: () => dispatch(startToggleSideDrawer())
+  closeSideDrawer: (e) => dispatch(closeSideDrawer(e)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SideDrawer)

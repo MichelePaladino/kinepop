@@ -5,25 +5,28 @@ import axios from "axios";
 import MovieCardList from "./movieCardList";
 import MovieSearch from "./movieSearch";
 import Header from "./Header";
-// import SideDrawer from "./SideDrawer"
 
-import { startSetLatestMovies, startSetSearchMovie, startSearchMoreMovie, resetPage } from "../store/actions/moviesActions";
-import { toggleSideDrawer } from "../store/actions/uiActions"
+import { startSetLatestMovies, startSetSearchMovie, startSearchMoreMovie, resetPage, startSetPopularMovies } from "../store/actions/moviesActions";
 
 import "../styles/styles.css"
 
 class HomePage extends Component {
     componentDidMount() {
-        console.log("from HomePage.js: componentDidMount");
         window.addEventListener('scroll', this.handleScroll, { passive: true });
+        console.log("Homepage.js --> componentDidMount()")
     }
 
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     return this.props.movies.moviesList !== nextProps.movies.moviesList
+    // }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log("from HomePage.js: componentDidUpdate");
-        if (prevProps.movies.moviesMode !== this.props.movies.moviesMode) {
-            this.props.resetPage();
-            console.log("from HomePage.js: resetPage()");
-        }
+        console.log("from HomePage.js ---> componentDidUpdate");
+        console.log("prevprops:", prevProps, "this.props:", this.props)
+        // if (prevProps.movies.moviesMode !== this.props.movies.moviesMode && prevProps.movies.infiniteScrollPage !== 0) {
+        //     this.props.resetPage();
+        //     console.log("from HomePage.js: resetPage()");
+        // };
     }
 
     componentWillUnmount() {
@@ -33,10 +36,10 @@ class HomePage extends Component {
     handleScroll = (e) => {
         e.stopPropagation();
 
-        const scrollTop = window.document.documentElement.scrollTop;
-        const clientHeight = window.document.documentElement.clientHeight;
+        let scrollTop = window.document.documentElement.scrollTop;
+        let clientHeight = window.document.documentElement.clientHeight;
 
-        const scrollHeight = window.document.documentElement.scrollHeight;
+        let scrollHeight = window.document.documentElement.scrollHeight;
 
         let page = this.props.movies.infiniteScrollPage;
 
@@ -44,6 +47,10 @@ class HomePage extends Component {
         if (clientHeight + scrollTop === scrollHeight && this.props.movies.moviesMode === 'latest') {
             axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&page=${page+1}`)
                         .then(response => this.props.startSetLatestMovies(response.data.results)) 
+        }
+        else if (clientHeight + scrollTop === scrollHeight && this.props.movies.moviesMode === 'popular') {
+            axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&page=${page+1}`)
+                        .then(response => this.props.startSetPopularMovies(response.data.results)) 
         }
         else if (clientHeight + scrollTop === scrollHeight && this.props.movies.moviesMode === 'search') {
             axios.get(`https://api.themoviedb.org/3/search/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&query=${this.props.filters.title}&page=${page+1}`)
@@ -85,7 +92,7 @@ class HomePage extends Component {
 const mapStateToProps = (state) => ({
     movies: state.movies,
     filters: state.filters,
-    ui: state.ui
+    // ui: state.ui
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -93,7 +100,7 @@ const mapDispatchToProps = (dispatch) => ({
     startSetSearchMovie: (movies) => dispatch(startSetSearchMovie(movies)),
     resetPage: () => dispatch(resetPage()),
     startSearchMoreMovie: (movies) => dispatch(startSearchMoreMovie(movies)),
-    toggleSideDrawer: () => dispatch(toggleSideDrawer())
+    startSetPopularMovies: (movies) => dispatch(startSetPopularMovies(movies))
 })
 
 
