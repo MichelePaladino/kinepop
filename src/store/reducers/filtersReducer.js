@@ -9,10 +9,14 @@ const filterReducer = (state=initialState, action) => {
                 ...state,
                 title: action.title
             };
+        case 'RESET_TITLE_FILTER':
+            return {
+                ...state,
+                title: ''
+            };
         default:
         return state
     }
 }
-
 
 export default filterReducer;

@@ -6,10 +6,12 @@ import uuid from "uuid";
 import MovieCard from "./movieCard";
 
 import { startSetLatestMovies, resetPage, startSetSearchMovie, startSetPopularMovies } from "../store/actions/moviesActions";
+import { resetTitleFilter } from "../store/actions/filtersActions"
 
 export class MovieCardList extends Component {
     componentDidMount() {
         this.props.resetPage();
+        this.props.resetTitleFilter();
         console.log("from movieCardList.js: componentDidMount");
         // THIS REQUEST MUST DEPEND FROM THE "path='/..." OF ROUTE WHICH CONTAINS HomePage.js"
         // IF PATH === latest THEN
@@ -67,6 +69,7 @@ const mapDispatchToProps = (dispatch) => ({
     startSetSearchMovie: (movies) => dispatch(startSetSearchMovie(movies)),
     startSetPopularMovies: (movies) => dispatch(startSetPopularMovies(movies)),
     resetPage: () => dispatch(resetPage()),
+    resetTitleFilter: () => dispatch(resetTitleFilter())
 })
 
 

@@ -16,7 +16,7 @@ import { Icon } from 'rmwc/Icon';
 
 const MovieCard = ( {title, year, poster, id, overview, rating, onFavClick, inDatabase } ) => {
   return (
-    <Card style={{ width: "21rem", margin: "1rem" }}>
+    <Card style={{ width: "19.5rem", margin: "1rem 0rem" }}>
       <Link className="Link" to={`/movies/movie/${id}`}><CardPrimaryAction>
         <CardMedia
         //   square

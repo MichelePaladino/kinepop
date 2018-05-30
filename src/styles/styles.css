@@ -61,12 +61,18 @@
 }
 
 
-.Grid {
-  border: 0.5rem solid black;
+/* .Grid {
+  border: 0.2rem solid black;
 }
 
 .mdc-layout-grid__cell {
-  border: 0.5rem solid red;
+  border: 0.1rem solid red;
+} */
+
+
+.Youtube {
+  width: 100%;
+  height: 35vh;
 }
 
 .Link {
@@ -81,7 +87,7 @@
 } */
 
 .MovieInfo {
-  padding-top: 10rem;
+  padding-top: 4rem;
 }
 
 .movieSearch {

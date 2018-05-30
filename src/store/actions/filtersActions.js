@@ -23,3 +23,7 @@ export const startOnTitleChange = (e) => {
         dispatch(onTitleChange(e));
     }
 }
+
+export const resetTitleFilter = () => ({
+    type: 'RESET_TITLE_FILTER'
+})

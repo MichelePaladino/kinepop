@@ -1,16 +1,55 @@
 import React, { Component } from "react";
+import { connect } from "react-redux"
 import axios from "axios";
+import Youtube from "react-youtube";
+
+import { startSetMovieInfo } from "../store/actions/movieInfoActions";
 
 import { Grid, GridCell } from "rmwc/Grid";
+import { 
+  ImageList,
+  ImageListItem,
+  ImageListImageAspectContainer,
+  ImageListImage,
+  ImageListSupporting,
+  ImageListLabel
+} from 'rmwc/ImageList';
 
 class MovieInfo extends Component {
+  // state = {
+  //   player: null,
+  //   isPlaying: false
+  // }
+
   componentDidMount() {
-      axios.get(`https://api.themoviedb.org/3/movie/${this.props.match.params.id}/videos?api_key=c0ba1f468f4848a2eb2a4855af9c31d8`)
-        .then(response => console.log("componentDidMount() ---> response to use to update state dispatching:", response))
+      axios.get(`https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&append_to_response=videos,similar,credits`)
+        // .then(response => console.log("componentDidMount() ---> response to use to update state dispatching:", response))
+        .then(response => this.props.startSetMovieInfo(response.data));
   }
+
+  // onReady = (event) => {
+  //   this.setState({
+  //     player: event.target,
+  //   });
+  // }
+
+  // onPlayVideo = () => {
+  //   this.state.player.playVideo();
+  // }
+
+  // onPauseVideo = () => {
+  //   this.state.player.pauseVideo();
+  // }
+
   render() {
-    return (
+    let loaded = this.props.movieInfo.loaded;
+    return (loaded &&
       <div className="MovieInfo">
+        <Grid className="Grid">
+          <GridCell span="12">
+          <ImageListImage src={`https://image.tmdb.org/t/p/original${this.props.movieInfo.backdrop_path}`}/>
+          </GridCell>
+        </Grid>
         <Grid className="Grid">
           <GridCell span="3">1</GridCell>
           <GridCell span="3">2</GridCell>
@@ -25,11 +64,42 @@ class MovieInfo extends Component {
         <Grid className="Grid">
           <GridCell span="12">12span</GridCell>
         </Grid>
+        <Grid className="Grid">
+          <GridCell span="12">
+            <Youtube className="Youtube" videoId={this.props.movieInfo.videos[0].key} onReady={this.onReady} opts={{playerVars: {playlist: `${this.props.movieInfo.videos.slice(1).map(el=>el.key).join(',')}`, color: "white", controls: 1, iv_load_policy: 3, rel: 0}}}/>
+            {/* <Youtube videoId="XVUtNk_6mpc" /> */}
+          </GridCell>
+        </Grid>
+        {/* <Grid className="Grid">
+          <GridCell span="4"><button onClick={this.onPlayVideo}>Play</button></GridCell>
+          <GridCell span="4"><button onClick={this.onPauseVideo}>Pause</button></GridCell>
+          <GridCell span="4"><button onClick={this.onChangeVideo}>Change Video</button></GridCell>
+        </Grid> */}
       </div>
     );
   }
 }
 
-export default MovieInfo;
+{/* <Youtube className="Youtube" videoId={this.props.movieInfo.videos[0].key} 
+onReady={this.onReady} 
+opts={{playerVars: {playlist: `${this.props.movieInfo.videos.slice(1).map(el=>el.key).join(',')}`, color: "white", controls: 1, iv_load_policy: 3, rel: 0}}}/> */}
 
-// {this.props.match.params.id}
+const mapStateToProps = (state) => ({
+  movieInfo: state.movieInfo,
+  // movies: state.movies,
+  // filters: state.filters,
+  // ui: state.ui
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  startSetMovieInfo: (payload) => dispatch(startSetMovieInfo(payload)),
+
+  // startSetLatestMovies: (movies) => dispatch(startSetLatestMovies(movies)),
+  // startSetSearchMovie: (movies) => dispatch(startSetSearchMovie(movies)),
+  // resetPage: () => dispatch(resetPage()),
+  // startSearchMoreMovie: (movies) => dispatch(startSearchMoreMovie(movies)),
+  // startSetPopularMovies: (movies) => dispatch(startSetPopularMovies(movies))
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieInfo);

@@ -4,7 +4,7 @@ import thunk from "redux-thunk";
 import movieReducer from "./reducers/moviesReducer";
 import filterReducer from "./reducers/filtersReducer";
 import uiReducer from "./reducers/uiReducer";
-// import movieInfoReducer from "./reducers/movieInfo";
+import movieInfoReducer from "./reducers/movieInfoReducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -12,7 +12,7 @@ const rootReducer = {
     movies: movieReducer,
     filters: filterReducer,
     ui: uiReducer,
-    // movieInfo: movieInfoReducer
+    movieInfo: movieInfoReducer
 }
 
 const configureStore = () => {
