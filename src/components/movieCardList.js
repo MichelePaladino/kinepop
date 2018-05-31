@@ -10,19 +10,19 @@ import { resetTitleFilter } from "../store/actions/filtersActions"
 
 export class MovieCardList extends Component {
     componentDidMount() {
-        this.props.resetPage();
-        this.props.resetTitleFilter();
+        // this.props.resetPage();
+        // this.props.resetTitleFilter();
         console.log("from movieCardList.js: componentDidMount");
         // THIS REQUEST MUST DEPEND FROM THE "path='/..." OF ROUTE WHICH CONTAINS HomePage.js"
         // IF PATH === latest THEN
-        if (this.props.mode === 'latest') {
-            axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=c0ba1f468f4848a2eb2a4855af9c31d8`)
-            .then(response => this.props.startSetLatestMovies(response.data.results))
-        }
-        else if (this.props.mode === 'popular') {
-            axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=c0ba1f468f4848a2eb2a4855af9c31d8`)
-            .then(response => this.props.startSetPopularMovies(response.data.results))
-        }
+        // if (this.props.mode === 'latest') {
+        //     axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=c0ba1f468f4848a2eb2a4855af9c31d8`)
+        //     .then(response => this.props.startSetLatestMovies(response.data.results))
+        // }
+        // else if (this.props.mode === 'popular') {
+        //     axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=c0ba1f468f4848a2eb2a4855af9c31d8`)
+        //     .then(response => this.props.startSetPopularMovies(response.data.results))
+        // }
 
         // IF PATH === 2016 THEN
             //axiox.get('2016).then(dispatch(startSet2016Movies))
@@ -38,14 +38,14 @@ export class MovieCardList extends Component {
         console.log("movieCardList: handleFavClick AGGIUNGO/TOLGO dal DB", "eventDetail:", e.detail)
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log("from movieCardList.js: componentDidUpdate");
-        if (prevProps.filters.title !== this.props.filters.title && this.props.filters.title !== "") {
-            axios.get(`https://api.themoviedb.org/3/search/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&query=${this.props.filters.title}`)
-            .then(response => this.props.startSetSearchMovie(response.data.results))
-        }       
-        // NEW THIS.PROPS.MODE (---> new request)
-    }
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     console.log("from movieCardList.js: componentDidUpdate");
+    //     if (prevProps.filters.title !== this.props.filters.title && this.props.filters.title !== "") {
+    //         axios.get(`https://api.themoviedb.org/3/search/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&query=${this.props.filters.title}`)
+    //         .then(response => this.props.startSetSearchMovie(response.data.results))
+    //     }       
+    //     // NEW THIS.PROPS.MODE (---> new request)
+    // }
 
     render () {
         return (

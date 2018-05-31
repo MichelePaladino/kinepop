@@ -15,3 +15,4 @@ export const openSideDrawer = () => ({
 export const closeSideDrawer = (e) => ({
     type: "CLOSE_SIDE_DRAWER"
 })
+

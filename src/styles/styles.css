@@ -65,9 +65,14 @@
   border: 0.2rem solid black;
 }
 
+
 .mdc-layout-grid__cell {
   border: 0.1rem solid red;
 } */
+
+.Grid__title {
+  text-align: center;
+}
 
 
 .Youtube {
@@ -87,8 +92,9 @@
 } */
 
 .MovieInfo {
-  padding-top: 4rem;
+  padding: 5rem 2rem 2rem 2rem;
 }
+
 
 .movieSearch {
   margin: 0 5rem;

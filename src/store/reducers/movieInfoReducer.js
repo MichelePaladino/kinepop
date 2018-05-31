@@ -8,6 +8,7 @@ const initialState = {
     revenue: 0,
     runtime: 0,
     tagline: '',
+    title: '',
     videos: [],
     similar: [],
     cast: [],
@@ -22,6 +23,7 @@ const movieInfoReducer = (state=initialState, {
     release_date,
     runtime,
     tagline,
+    title,
     videos,
     similar,
     credits
@@ -37,6 +39,7 @@ const movieInfoReducer = (state=initialState, {
                 release_date,
                 runtime,
                 tagline,
+                title,
                 videos: videos.results,
                 similar: similar.results,
                 cast: credits.cast.slice(0,15),

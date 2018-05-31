@@ -1,7 +1,8 @@
 const initialState = {
     moviesList: [],
     moviesMode: '',
-    infiniteScrollPage: 0
+    infiniteScrollPage: 0,
+    initialLoad: true
 };
 
 const moviesReducer = (state=initialState, action) => {
@@ -10,12 +11,22 @@ const moviesReducer = (state=initialState, action) => {
             return {
                 ...state,
                 moviesMode: 'latest',
+                infiniteScrollPage: 1,
+                moviesList: [
+                    ...action.movies
+                ],
+            };
+        case 'SET_MORE_LATEST_MOVIES':
+            return {
+                ...state,
+                moviesMode: 'latest',
+                initialLoad: false,
                 infiniteScrollPage: state.infiniteScrollPage + 1,
                 moviesList: [
                     ...state.moviesList, 
                     ...action.movies
                 ],
-            };
+            }
         case 'SET_SEARCH_MOVIE':
             return {
                 ...state,
@@ -29,6 +40,7 @@ const moviesReducer = (state=initialState, action) => {
             return {
                 ...state,
                 infiniteScrollPage: state.infiniteScrollPage + 1,
+                initialLoad: false,
                 moviesMode: 'search',
                 moviesList: [
                     ...state.moviesList, 
@@ -39,17 +51,25 @@ const moviesReducer = (state=initialState, action) => {
             return {
                 ...state,
                 moviesMode: 'popular',
-                infiniteScrollPage: state.infiniteScrollPage +1,
+                infiniteScrollPage: 1,
+                moviesList: [
+                    ...action.movies
+                ]
+            }      
+        case 'SET_MORE_POPULAR_MOVIES':
+            return {
+                ...state,
+                moviesMode: 'popular',
+                initialLoad: false,
+                infiniteScrollPage: state.infiniteScrollPage + 1,
                 moviesList: [
                     ...state.moviesList,
                     ...action.movies
                 ]
-            }      
+            }
         case 'RESET_PAGE':
             return {
                 ...state,
-                moviesMode: '',
-                infiniteScrollPage: 0,
                 moviesList: []
             };
         default:

@@ -13,6 +13,17 @@ export const startSetLatestMovies = (movies) => {
     }
 }
 
+export const setMoreLatestMovies = (movies) => ({
+    type: 'SET_MORE_LATEST_MOVIES',
+    movies
+})
+
+export const startSetMoreLatestMovies = (movies) => {
+    return (dispatch) => {
+        dispatch(setMoreLatestMovies(movies))
+    }
+}
+
 export const setSearchMovie = (movies) => ({
     type: "SET_SEARCH_MOVIE",
     movies
@@ -46,3 +57,14 @@ export const startSetPopularMovies = (movies) => {
     }
 }
 
+
+export const setMorePopularMovies = (movies) => ({
+    type: "SET_MORE_POPULAR_MOVIES",
+    movies
+})
+
+export const startSetMorePopularMovies = (movies) => {
+    return (dispatch) => {
+        dispatch(setMorePopularMovies(movies))
+    }
+}

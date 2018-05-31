@@ -14,6 +14,9 @@ import {
   ImageListSupporting,
   ImageListLabel
 } from 'rmwc/ImageList';
+import { ShapeContainer } from 'rmwc/Shape';
+import { Card, CardPrimaryAction, CardMedia } from 'rmwc/Card';
+import { Typography } from 'rmwc/Typography';
 
 class MovieInfo extends Component {
   // state = {
@@ -41,6 +44,8 @@ class MovieInfo extends Component {
   //   this.state.player.pauseVideo();
   // }
 
+
+
   render() {
     let loaded = this.props.movieInfo.loaded;
     return (loaded &&
@@ -49,6 +54,9 @@ class MovieInfo extends Component {
           <GridCell span="12">
           <ImageListImage src={`https://image.tmdb.org/t/p/original${this.props.movieInfo.backdrop_path}`}/>
           </GridCell>
+        </Grid>
+        <Grid className="Grid Grid__title">
+          <GridCell span="12"><Typography use="headline2" >{this.props.movieInfo.title}</Typography></GridCell>
         </Grid>
         <Grid className="Grid">
           <GridCell span="3">1</GridCell>
@@ -62,14 +70,36 @@ class MovieInfo extends Component {
           <GridCell span="4">6</GridCell>
         </Grid>
         <Grid className="Grid">
-          <GridCell span="12">12span</GridCell>
-        </Grid>
-        <Grid className="Grid">
           <GridCell span="12">
-            <Youtube className="Youtube" videoId={this.props.movieInfo.videos[0].key} onReady={this.onReady} opts={{playerVars: {playlist: `${this.props.movieInfo.videos.slice(1).map(el=>el.key).join(',')}`, color: "white", controls: 1, iv_load_policy: 3, rel: 0}}}/>
-            {/* <Youtube videoId="XVUtNk_6mpc" /> */}
+            {this.props.movieInfo.videos[0] && <Youtube className="Youtube" videoId={this.props.movieInfo.videos[0].key} onReady={this.onReady} opts={{playerVars: {playlist: `${this.props.movieInfo.videos.slice(1).map(el=>el.key).join(',')}`, color: "white", controls: 1, iv_load_policy: 3, rel: 0}}}/>}
           </GridCell>
         </Grid>
+
+
+        {/* <ShapeContainer
+          topLeftCorner="20"
+          bottomRightCorner="20"
+          outlineWidth="1"
+          outlineColor="#e0e0e0"
+        >
+          <Card outlined >
+            <CardPrimaryAction>
+              <div style={{display: 'flex'}}>
+                <CardMedia square style={{
+                  width: '30rem',
+                  backgroundImage: `url(https://image.tmdb.org/t/p/original${this.props.movieInfo.backdrop_path})`
+                  }}
+                />
+                <div style={{padding: '20px'}}>
+                    Card
+                </div>
+              </div>
+            </CardPrimaryAction>
+          </Card>
+        </ShapeContainer> */}
+
+
+
         {/* <Grid className="Grid">
           <GridCell span="4"><button onClick={this.onPlayVideo}>Play</button></GridCell>
           <GridCell span="4"><button onClick={this.onPauseVideo}>Pause</button></GridCell>
