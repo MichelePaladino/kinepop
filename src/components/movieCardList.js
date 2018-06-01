@@ -5,7 +5,7 @@ import uuid from "uuid";
 
 import MovieCard from "./movieCard";
 
-import { startSetLatestMovies, resetPage, startSetSearchMovie, startSetPopularMovies } from "../store/actions/moviesActions";
+import { startSetLatestMovies, startResetMoviesMode, startSetSearchMovie, startSetPopularMovies } from "../store/actions/moviesActions";
 import { resetTitleFilter } from "../store/actions/filtersActions"
 
 export class MovieCardList extends Component {
@@ -68,7 +68,7 @@ const mapDispatchToProps = (dispatch) => ({
     startSetLatestMovies: (movies) => dispatch(startSetLatestMovies(movies)),
     startSetSearchMovie: (movies) => dispatch(startSetSearchMovie(movies)),
     startSetPopularMovies: (movies) => dispatch(startSetPopularMovies(movies)),
-    resetPage: () => dispatch(resetPage()),
+    startResetMoviesMode: () => dispatch(startResetMoviesMode()),
     resetTitleFilter: () => dispatch(resetTitleFilter())
 })
 

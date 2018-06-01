@@ -31,6 +31,7 @@ const moviesReducer = (state=initialState, action) => {
             return {
                 ...state,
                 infiniteScrollPage: 1,
+                initialLoad: true,
                 moviesMode: 'search',
                 moviesList: [
                     ...action.movies
@@ -40,7 +41,7 @@ const moviesReducer = (state=initialState, action) => {
             return {
                 ...state,
                 infiniteScrollPage: state.infiniteScrollPage + 1,
-                initialLoad: false,
+                initialLoad: true,
                 moviesMode: 'search',
                 moviesList: [
                     ...state.moviesList, 
@@ -51,6 +52,7 @@ const moviesReducer = (state=initialState, action) => {
             return {
                 ...state,
                 moviesMode: 'popular',
+                initialLoad: false,
                 infiniteScrollPage: 1,
                 moviesList: [
                     ...action.movies
@@ -67,11 +69,22 @@ const moviesReducer = (state=initialState, action) => {
                     ...action.movies
                 ]
             }
-        case 'RESET_PAGE':
+        case 'RESET_MOVIES_MODE':
             return {
                 ...state,
-                moviesList: []
+                moviesMode: '',
+                moviesList: [
+                    ...state.moviesList
+                ]
             };
+        case 'SET_MOVIES_MODE_TO_SEARCH':
+            return {
+                ...state,
+                moviesMode: 'search',
+                moviesList: [
+                    ...state.moviesList
+                ]
+            }
         default:
         return state
     }

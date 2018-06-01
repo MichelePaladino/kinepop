@@ -24,6 +24,12 @@ export const startOnTitleChange = (e) => {
     }
 }
 
-export const resetTitleFilter = () => ({
+export const resetTitleFilter = () => {
+    return (dispatch) => {
+        dispatch(doResetTitleFilter())
+    }
+}
+
+export const doResetTitleFilter = () => ({
     type: 'RESET_TITLE_FILTER'
 })

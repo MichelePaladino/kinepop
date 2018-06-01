@@ -6,31 +6,36 @@ import MovieCardList from "./movieCardList";
 import MovieSearch from "./movieSearch";
 import Header from "./Header";
 
-import { startSetLatestMovies, startSetMoreLatestMovies, startSetMorePopularMovies, startSetSearchMovie, startSearchMoreMovie, resetPage, startSetPopularMovies } from "../store/actions/moviesActions";
+import { startSetLatestMovies, startSetMoreLatestMovies, startSetMorePopularMovies, startSetSearchMovie, startSearchMoreMovie, startResetMoviesMode, startSetPopularMovies } from "../store/actions/moviesActions";
+import { resetTitleFilter } from "../store/actions/filtersActions";
 
-import "../styles/styles.css"
+import "../styles/styles.css";
 
 class HomePage extends Component {
     componentDidMount() {
-        this.props.resetPage();
         window.addEventListener('scroll', this.handleScroll, { passive: true });
         console.log("Homepage.js --> componentDidMount()")
-        if (this.props.movies.moviesMode === 'search' && this.props.movies.initialLoad === true) {
+        if (this.props.filters.title.length > 0 && this.props.movies.moviesMode === 'search') {
             axios.get(`https://api.themoviedb.org/3/search/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&query=${this.props.filters.title}`)
-            .then(response => this.props.startSetSearchMovie(response.data.results))
+            .then(response => {
+                this.props.startSetSearchMovie(response.data.results);
+                this.props.startResetMoviesMode();
+            })
         }
-        else if (this.props.match.params.mode === 'latest' && this.props.movies.initialLoad === true) {
+        else if (this.props.match.params.mode === 'latest' && this.props.movies.moviesMode !== 'latest'  ) {
+            this.props.resetTitleFilter();
             axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=c0ba1f468f4848a2eb2a4855af9c31d8`)
             .then(response => this.props.startSetLatestMovies(response.data.results))
         }
-        else if (this.props.match.params.mode === 'popular' && this.props.movies.initialLoad === true) {
+        else if (this.props.match.params.mode === 'popular' && this.props.movies.moviesMode !== 'popular' ) {
+            this.props.resetTitleFilter();
             axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=c0ba1f468f4848a2eb2a4855af9c31d8`)
             .then(response => this.props.startSetPopularMovies(response.data.results))
         }
     }
 
     // shouldComponentUpdate(nextProps, nextState) {
-    //     return this.props.movies.moviesList !== nextProps.movies.moviesList
+    //     return this.props.movies.moviesList.length !== nextProps.movies.moviesList.length
     // }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -45,8 +50,10 @@ class HomePage extends Component {
         // }
         if (prevProps.filters.title !== this.props.filters.title && this.props.filters.title !== "") {
             axios.get(`https://api.themoviedb.org/3/search/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&query=${this.props.filters.title}`)
-            .then(response => this.props.startSetSearchMovie(response.data.results))
+            .then(response => this.props.startSetSearchMovie(response.data.results));
+            // this.props.resetPage();;
         } 
+    
         // if (prevProps.movies.moviesMode !== this.props.movies.moviesMode) {
         //     // set initial load to TRUE
         //     this.props.resetPage()
@@ -127,11 +134,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     startSetLatestMovies: (movies) => dispatch(startSetLatestMovies(movies)),
     startSetSearchMovie: (movies) => dispatch(startSetSearchMovie(movies)),
-    resetPage: () => dispatch(resetPage()),
+    startResetMoviesMode: () => dispatch(startResetMoviesMode()),
     startSearchMoreMovie: (movies) => dispatch(startSearchMoreMovie(movies)),
     startSetPopularMovies: (movies) => dispatch(startSetPopularMovies(movies)),
     startSetMorePopularMovies: (movies) => dispatch(startSetMorePopularMovies(movies)),
-    startSetMoreLatestMovies: (movies) => dispatch(startSetMoreLatestMovies(movies))
+    startSetMoreLatestMovies: (movies) => dispatch(startSetMoreLatestMovies(movies)),
+    resetTitleFilter: () => dispatch(resetTitleFilter())
 })
 
 

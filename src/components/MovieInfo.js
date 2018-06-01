@@ -4,6 +4,7 @@ import axios from "axios";
 import Youtube from "react-youtube";
 
 import { startSetMovieInfo } from "../store/actions/movieInfoActions";
+import { setMoviesModeToSearch } from "../store/actions/moviesActions"
 
 import { Grid, GridCell } from "rmwc/Grid";
 import { 
@@ -28,6 +29,7 @@ class MovieInfo extends Component {
       axios.get(`https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&append_to_response=videos,similar,credits`)
         // .then(response => console.log("componentDidMount() ---> response to use to update state dispatching:", response))
         .then(response => this.props.startSetMovieInfo(response.data));
+        this.props.setMoviesModeToSearch()
   }
 
   // onReady = (event) => {
@@ -123,6 +125,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   startSetMovieInfo: (payload) => dispatch(startSetMovieInfo(payload)),
+  setMoviesModeToSearch: () => dispatch(setMoviesModeToSearch()),
 
   // startSetLatestMovies: (movies) => dispatch(startSetLatestMovies(movies)),
   // startSetSearchMovie: (movies) => dispatch(startSetSearchMovie(movies)),

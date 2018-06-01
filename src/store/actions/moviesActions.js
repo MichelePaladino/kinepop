@@ -1,5 +1,11 @@
-export const resetPage = () => ({
-    type: "RESET_PAGE"
+export const startResetMoviesMode = () => {
+    return (dispatch) => {
+        dispatch(resetMoviesMode())
+    }
+}
+
+export const resetMoviesMode = () => ({
+    type: "RESET_MOVIES_MODE"
 })
 
 export const setLatestMovies = (movies) => ({
@@ -68,3 +74,7 @@ export const startSetMorePopularMovies = (movies) => {
         dispatch(setMorePopularMovies(movies))
     }
 }
+
+export const setMoviesModeToSearch = () => ({
+    type: 'SET_MOVIES_MODE_TO_SEARCH'
+})
