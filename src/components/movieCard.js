@@ -14,14 +14,15 @@ import {
 import { Typography } from "rmwc/Typography";
 import { Icon } from 'rmwc/Icon';
 
-const MovieCard = ( {title, year, poster, id, overview, rating, onFavClick, inDatabase } ) => {
+const MovieCard = ( {title, year="", poster, id, overview, rating, onFavClick, inDatabase } ) => {
+  let art = poster ? poster : '4Ll653TYNjXaKlYGmiPRr236Vhi.jpg'
   return (
     <Card style={{ width: "19.5rem", margin: "1rem 0rem" }}>
       <Link className="Link" to={`/movies/movie/${id}`}><CardPrimaryAction>
         <CardMedia
         //   square
           style={{
-            backgroundImage: `url(https://image.tmdb.org/t/p/w300_and_h450_bestv2/${poster})`,
+            backgroundImage: `url(https://image.tmdb.org/t/p/w300_and_h450_bestv2/${art})`,
             height: "30rem"
           }}
         />

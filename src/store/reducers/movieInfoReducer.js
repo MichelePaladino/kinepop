@@ -12,15 +12,16 @@ const initialState = {
     videos: [],
     similar: [],
     cast: [],
-    director: ''
 }
 
 const movieInfoReducer = (state=initialState, { 
     type, 
-    backdrop_path,  
+    backdrop_path,
+    budget,  
     id,
     overview,
     release_date,
+    revenue,
     runtime,
     tagline,
     title,
@@ -34,16 +35,17 @@ const movieInfoReducer = (state=initialState, {
                 loaded: true,
                 type, 
                 backdrop_path,  
+                budget,
                 id,
                 overview,
                 release_date,
+                revenue,
                 runtime,
                 tagline,
                 title,
                 videos: videos.results,
                 similar: similar.results,
-                cast: credits.cast.slice(0,15),
-                director: credits.crew[0]
+                cast: credits.crew.slice(0,1).concat(credits.cast.slice(0,14)),
             };
         default:
             return state;

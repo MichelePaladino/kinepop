@@ -50,7 +50,7 @@ export class MovieCardList extends Component {
     render () {
         return (
             this.props.movies.moviesList.map((movie, index) => {
-                !movie.poster_path ? movie.poster_path="4Ll653TYNjXaKlYGmiPRr236Vhi.jpg" : movie.poster_path=movie.poster_path;
+                // !movie.poster_path ? movie.poster_path="4Ll653TYNjXaKlYGmiPRr236Vhi.jpg" : movie.poster_path=movie.poster_path;
                 // movie.id is in database THEN inDataBase=true ELSE false
                 let check = movie.id ? true : false; 
                 return <MovieCard onFavClick={this.handleFavClick} inDatabase={check} title={movie.title} year={movie.release_date} rating={movie.vote_average} poster={movie.poster_path} key={uuid()} id={movie.id} overview={movie.overview}/>

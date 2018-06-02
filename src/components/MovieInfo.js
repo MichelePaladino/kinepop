@@ -4,7 +4,8 @@ import axios from "axios";
 import Youtube from "react-youtube";
 
 import { startSetMovieInfo } from "../store/actions/movieInfoActions";
-import { setMoviesModeToSearch } from "../store/actions/moviesActions"
+import { setMoviesModeToSearch } from "../store/actions/moviesActions";
+import PeopleCard from "./PeopleCard";
 
 import { Grid, GridCell } from "rmwc/Grid";
 import { 
@@ -29,7 +30,8 @@ class MovieInfo extends Component {
       axios.get(`https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&append_to_response=videos,similar,credits`)
         // .then(response => console.log("componentDidMount() ---> response to use to update state dispatching:", response))
         .then(response => this.props.startSetMovieInfo(response.data));
-        this.props.setMoviesModeToSearch()
+        this.props.setMoviesModeToSearch();
+        window.scrollTo(0, 0);
   }
 
   // onReady = (event) => {
@@ -50,11 +52,13 @@ class MovieInfo extends Component {
 
   render() {
     let loaded = this.props.movieInfo.loaded;
+    let cover = this.props.movieInfo.backdrop_path ? `https://image.tmdb.org/t/p/original${this.props.movieInfo.backdrop_path}` :  
+    "https://experienceluxury.co/wp-content/uploads/2016/08/private-cinema.jpg";
     return (loaded &&
       <div className="MovieInfo">
         <Grid className="Grid">
           <GridCell span="12">
-          <ImageListImage src={`https://image.tmdb.org/t/p/original${this.props.movieInfo.backdrop_path}`}/>
+          <ImageListImage src={cover}/>
           </GridCell>
         </Grid>
         <Grid className="Grid Grid__title">
@@ -76,6 +80,11 @@ class MovieInfo extends Component {
             {this.props.movieInfo.videos[0] && <Youtube className="Youtube" videoId={this.props.movieInfo.videos[0].key} onReady={this.onReady} opts={{playerVars: {playlist: `${this.props.movieInfo.videos.slice(1).map(el=>el.key).join(',')}`, color: "white", controls: 1, iv_load_policy: 3, rel: 0}}}/>}
           </GridCell>
         </Grid>
+        <div className="movieCardList">
+        {this.props.movieInfo.cast.map(people => {
+          return <PeopleCard job={people.job} key={people.id} id={people.id} char={people.character} name={people.name} pic={people.profile_path} order={people.order}/>
+        })}
+        </div>
 
 
         {/* <ShapeContainer
