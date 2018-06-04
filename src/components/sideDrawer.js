@@ -36,14 +36,17 @@ class SideDrawer extends Component {
       >
         {/* <DrawerHeader><Typography use="headline4" tag="h2">TITOLO</Typography></DrawerHeader> */}
         <DrawerContent className="Drawer__Content">
-          <Link className='Link' to="/movies/latest/">
-            <ListItem><ListItemText><Icon strategy="ligature" use="star" />Latest</ListItemText></ListItem>
+         <Link className="Link" to="/">
+            <ListItem><ListItemText>Landing Page</ListItemText></ListItem>
           </Link>
-          <Link className="Link" to="/">
-            <ListItem><ListItemText>Go to the LandingPage</ListItemText></ListItem>
+          <Link className='Link' to="/movies/latest/">
+            <ListItem><ListItemText><Icon strategy="ligature" use="star" />In Theaters Now</ListItemText></ListItem>
           </Link>
           <Link className="Link" to="/movies/popular/">
-            <ListItem><ListItemText>Go to Popular Movies</ListItemText></ListItem>
+            <ListItem><ListItemText>Popular Movies</ListItemText></ListItem>
+          </Link>
+          <Link className="Link" to="/movies/discover/">
+            <ListItem><ListItemText>Discover Movies</ListItemText></ListItem>
           </Link>
         </DrawerContent>
       </Drawer>

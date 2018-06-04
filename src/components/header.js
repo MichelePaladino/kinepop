@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 // import { startSetLatestMovies, startSetSearchMovie, startSearchMoreMovie, resetPage } from "../store/actions/moviesActions";
-import { openSideDrawer } from "../store/actions/uiActions"
+import { openSideDrawer, closeSideDrawer } from "../store/actions/uiActions"
 
 import {
     TopAppBar,
@@ -20,9 +20,9 @@ class Header extends Component {
   }
 
   render() {
-
+    const toggle = this.props.ui.sideDrawer ? (e) => this.props.closeSideDrawer(e) : (e) => this.props.openSideDrawer(e);
     return (
-      <TopAppBar fixed onNav={(e) => this.props.openSideDrawer(e)}>
+      <TopAppBar fixed onNav={toggle}>
             <TopAppBarRow>
               <TopAppBarSection alignStart>
                 <TopAppBarNavigationIcon use="menu" />
@@ -51,10 +51,11 @@ class Header extends Component {
   }
 };
 
-// const mapStateToProps = (state) => ({
-//   movies: state.movies,
-//   filters: state.filters,
-// })
+const mapStateToProps = (state) => ({
+  // movies: state.movies,
+  // filters: state.filters,
+  ui: state.ui,
+})
 
 const mapDispatchToProps = (dispatch) => ({
   // startSetLatestMovies: (movies) => dispatch(startSetLatestMovies(movies)),
@@ -62,6 +63,7 @@ const mapDispatchToProps = (dispatch) => ({
   // resetPage: () => dispatch(resetPage()),
   // startSearchMoreMovie: (movies) => dispatch(startSearchMoreMovie(movies)),
   openSideDrawer: () => dispatch(openSideDrawer()),
+  closeSideDrawer: () => dispatch(closeSideDrawer()),
 })
 
-export default connect(undefined, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

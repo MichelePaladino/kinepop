@@ -8,7 +8,7 @@ import { startOnTitleChange } from "../store/actions/filtersActions"
 
 const MovieSearch = (props) => {
     return (
-        <TextField fullwidth placeholder="Search for a movie!" value={props.filters.title} onChange={props.onTitleChange}/>
+        <TextField fullwidth placeholder="Search for a movie!" value={props.filters.title} onChange={props.startOnTitleChange}/>
     )
 }
 
@@ -17,7 +17,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    onTitleChange: (e) => dispatch(startOnTitleChange(e))
+    startOnTitleChange: (e) => dispatch(startOnTitleChange(e))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieSearch);

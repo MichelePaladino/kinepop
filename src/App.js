@@ -7,6 +7,7 @@ import SideDrawer from "./components/SideDrawer";
 import HomePage from "./components/HomePage";
 import MovieInfo from "./components/MovieInfo";
 import PeopleInfo from "./components/PeopleInfo";
+import Discover from "./components/Discover"
 
 import "./styles/styles.css"
 
@@ -23,6 +24,7 @@ class App extends Component {
             <Switch>
               <Route path="/" render={() => <div>Landing Page</div>} exact/>
               <Route path="/movies/movie/:id" component={MovieInfo}/>
+              <Route path="/movies/discover" component={Discover}/>
               <Route path="/movies/:mode" render={props => <HomePage key={Date.now()} {...props} />}/>
               <Route path="/people/:id" render={props => <PeopleInfo key={Date.now()} {...props} />}/>
             </Switch>

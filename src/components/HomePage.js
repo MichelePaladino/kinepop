@@ -19,24 +19,27 @@ class HomePage extends Component {
             axios.get(`https://api.themoviedb.org/3/search/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&query=${this.props.filters.title}`)
             .then(response => {
                 this.props.startSetSearchMovie(response.data.results);
-                this.props.startResetMoviesMode();
+                // this.props.startResetMoviesMode();
+                this.props.resetTitleFilter()
             })
         }
-        else if (this.props.match.params.mode === 'latest' && this.props.movies.moviesMode !== 'latest'  ) {
+        else if (this.props.match.params.mode === 'latest' && this.props.movies.moviesMode !== 'latest' ) {
             this.props.resetTitleFilter();
             axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=c0ba1f468f4848a2eb2a4855af9c31d8`)
-            .then(response => this.props.startSetLatestMovies(response.data.results))
+            .then(response => {
+                this.props.startSetLatestMovies(response.data.results);
+                window.scrollTo(0, 0);
+            })
         }
         else if (this.props.match.params.mode === 'popular' && this.props.movies.moviesMode !== 'popular' ) {
             this.props.resetTitleFilter();
             axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=c0ba1f468f4848a2eb2a4855af9c31d8`)
-            .then(response => this.props.startSetPopularMovies(response.data.results))
+            .then(response => {
+                this.props.startSetPopularMovies(response.data.results);
+                window.scrollTo(0, 0);
+            })
         }
     }
-
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     return this.props.movies.moviesList.length !== nextProps.movies.moviesList.length
-    // }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log("from HomePage.js ---> componentDidUpdate");
@@ -51,7 +54,7 @@ class HomePage extends Component {
         if (prevProps.filters.title !== this.props.filters.title && this.props.filters.title !== "") {
             axios.get(`https://api.themoviedb.org/3/search/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&query=${this.props.filters.title}`)
             .then(response => this.props.startSetSearchMovie(response.data.results));
-            // this.props.resetPage();;
+            // this.props.resetPage(); ;
         } 
     
         // if (prevProps.movies.moviesMode !== this.props.movies.moviesMode) {

@@ -8,3 +8,13 @@ export const startSetMovieInfo = (payload) => {
         dispatch(setMovieInfo(payload))
     }
 }
+
+export const resetMovieInfo = () => ({
+    type: 'RESET_MOVIE_INFO',
+})
+
+export const startResetMovieInfo = (payload) => {
+    return dispatch => {
+        dispatch(resetMovieInfo(payload))
+    }
+}

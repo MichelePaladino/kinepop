@@ -8,3 +8,13 @@ export const startSetPeopleInfo = (payload) => {
         dispatch(setPeopleInfo(payload))
     }
 }
+
+export const resetPeopleInfo = () => ({
+    type: 'RESET_PEOPLE_INFO',
+})
+
+export const startResetPeopleInfo = (payload) => {
+    return dispatch => {
+        dispatch(resetPeopleInfo(payload))
+    }
+}

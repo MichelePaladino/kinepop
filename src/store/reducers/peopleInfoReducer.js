@@ -37,6 +37,10 @@ const peopleInfoReducer = (state=initialState, {
                 cast: movie_credits.cast,
                 crew: movie_credits.crew
             };
+        case 'RESET_PEOPLE_INFO':
+            return {
+                ...initialState,
+            };
         default:
             return state;
     }

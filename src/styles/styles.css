@@ -13,6 +13,15 @@
   font-size: 62.5%;
 } */
 
+.Discover {
+  padding: 5rem 2rem 2rem 2rem;
+}
+
+
+/* .mdc-text-field__input {
+  display: inline
+} */
+
 .header {
   /* padding-bottom: 5.1rem; */
   /* position: fixed; */
@@ -29,6 +38,7 @@
     margin: 0;
   } */
 }
+
 
 
 .content-container {

@@ -5,7 +5,7 @@ import uuid from "uuid";
 
 import MovieCard from "./movieCard";
 
-import { startSetPeopleInfo } from "../store/actions/peopleInfoActions";
+import { startSetPeopleInfo, startResetPeopleInfo } from "../store/actions/peopleInfoActions";
 // import { setMoviesModeToSearch } from "../store/actions/moviesActions";
 
 
@@ -30,10 +30,23 @@ class PeopleInfo extends Component {
           window.scrollTo(0, 0);
         //   this.props.setMoviesModeToSearch() ¬¬ DOUBLE BACK TO THE FUTURE
     }
+
+    componentWillUnmount() {
+      this.props.startResetPeopleInfo();
+    }
+
     render () {
         let loaded = this.props.peopleInfo.loaded;
         let cover = this.props.peopleInfo.profile_path ? `https://image.tmdb.org/t/p/original${this.props.peopleInfo.profile_path}` :  
         "https://yt3.ggpht.com/-uGYJvczbuow/AAAAAAAAAAI/AAAAAAAAAAA/VQbgt1FitYs/s900-c-k-no-mo-rj-c0xffffff/photo.jpg";
+        // if (loaded) {
+        //   let nuova = this.props.peopleInfo.crew.filter((movie, index) => {
+        //     if (index <= (this.props.peopleInfo.crew.length - 2)) {
+        //       return this.props.peopleInfo.crew[index].id !== this.props.peopleInfo.crew[index+1].id
+        //     }
+        //   });
+        //   console.log('LA NUOVA ARRAY', nuova)
+        // };
         return (loaded &&
             <div className="MovieInfo">
               <Grid className="Grid">
@@ -56,11 +69,22 @@ class PeopleInfo extends Component {
                 <GridCell span="4">6</GridCell>
               </Grid>
               <div className="movieCardList">
-              {this.props.peopleInfo.cast.map(movie => {
-                return <MovieCard title={movie.title} year={movie.release_date} rating={movie.vote_average} poster={movie.poster_path} key={uuid()} id={movie.id} overview={movie.overview}/>
-              })}
+                {this.props.peopleInfo.cast.map(movie => {
+                  return <MovieCard title={movie.title} year={movie.release_date} rating={movie.vote_average} poster={movie.poster_path} key={uuid()} id={movie.id} overview={movie.overview}/>
+                })}
               </div>
-      
+              {this.props.peopleInfo.crew.length > 0 && <Grid className="Grid Grid__title">
+                <GridCell span="12"><Typography use="headline4" >{this.props.peopleInfo.name}: Crew</Typography></GridCell>
+              </Grid>}
+              <div className="movieCardList">
+                {this.props.peopleInfo.crew.filter((movie, index) => {
+                  if (index <= (this.props.peopleInfo.crew.length - 2)) {
+                    return this.props.peopleInfo.crew[index].id !== this.props.peopleInfo.crew[index+1].id || this.props.peopleInfo.crew[index] === this.props.peopleInfo.crew[(this.props.peopleInfo.crew.length - 2)]
+                  }
+                }).map(movie => {
+                  return <MovieCard title={movie.title} year={movie.release_date} rating={movie.vote_average} poster={movie.poster_path} key={uuid()} id={movie.id} overview={movie.overview}/>
+                })}
+              </div>
       
               {/* <ShapeContainer
                 topLeftCorner="20"
@@ -110,6 +134,7 @@ const mapStateToProps = (state) => ({
   const mapDispatchToProps = (dispatch) => ({
     startSetPeopleInfo: (payload) => dispatch(startSetPeopleInfo(payload)),
     // setMoviesModeToSearch: () => dispatch(setMoviesModeToSearch()),
+    startResetPeopleInfo: () => dispatch(startResetPeopleInfo()),
   
     // startSetLatestMovies: (movies) => dispatch(startSetLatestMovies(movies)),
     // startSetSearchMovie: (movies) => dispatch(startSetSearchMovie(movies)),
