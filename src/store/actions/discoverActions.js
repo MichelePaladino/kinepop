@@ -1,4 +1,4 @@
-export const onSortByChange = (e) => ({
+export const onChangeSortBy = (e) => ({
     type: 'SET_SORT_BY',
     sortBy: e.target.value
 })
@@ -6,7 +6,7 @@ export const onSortByChange = (e) => ({
 
 export const startOnChangeSortBy = (e) => {
     return (dispatch) => {
-        dispatch(onSortByChange(e));
+        dispatch(onChangeSortBy(e));
     }
 }
 
@@ -27,4 +27,29 @@ export const onChangePrimaryReleaseDate = (primaryReleaseDate) => ({
 
 export const resetDates = () => ({
     type: 'RESET_DATES'
+})
+
+export const setRating = (rating) => ({
+    type: 'SET_RATING',
+    rating
+})
+
+export const toggleGenre = (genre) => ({
+    type: 'TOGGLE_GENRE',
+    genre
+})
+
+export const startPopulateMovies = (movies) => {
+    return (dispatch) => {
+        dispatch(populateMovies(movies))
+    }
+}
+
+export const populateMovies = (movies) => ({
+    type: 'POPULATE_MOVIES',
+    movies
+})
+
+export const resetDiscover = () => ({
+    type: 'RESET_DISCOVER'
 })

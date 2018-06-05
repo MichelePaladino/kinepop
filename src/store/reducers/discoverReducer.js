@@ -1,10 +1,13 @@
 import moment from "moment";
 
 const initialState = {
-    sortBy: '',
+    sortBy: 'popularity.desc',
     startDate: '',
     endDate: '',
     primaryReleaseDate: '',
+    rating: '',
+    genres: [],
+    movies: []
 };
 
 const discoverReducer = (state=initialState, action) => {
@@ -35,6 +38,40 @@ const discoverReducer = (state=initialState, action) => {
                 startDate: '',
                 endDate: '',
                 primaryReleaseDate: '',
+            }
+        case 'SET_RATING':
+            return {
+                ...state,
+                rating: action.rating,
+            }
+        case 'TOGGLE_GENRE':
+            if (state.genres.includes(action.genre)) {
+                // REMOVE GENRE FROM ARRAY
+                return {
+                    ...state,
+                    genres: state.genres.filter(id => id !== action.genre)
+                }
+            } else {
+                // PUSH GENRE INTO ARRAY
+                return {
+                    ...state,
+                    genres: [
+                        ...state.genres,
+                        action.genre
+                    ]
+                }
+            }
+        case 'POPULATE_MOVIES':
+            return {
+                ...state,
+                genres: [...state.genres],
+                movies: [...state.movies, ...action.movies],
+            }
+        case 'RESET_DISCOVER': 
+            return {
+                ...state,
+                genres: [...state.genres],
+                movies: [],
             }
         default:
             return state;
