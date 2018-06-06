@@ -121,6 +121,10 @@
   /* z-index: -1; */
 }
 
+.Search {
+  padding: 5rem 2rem 2rem 2rem;
+}
+
 /* .mdc-card__media {
     width: 21rem;
     height: 450px;

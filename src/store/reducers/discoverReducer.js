@@ -7,7 +7,27 @@ const initialState = {
     primaryReleaseDate: '',
     rating: '',
     genres: [],
-    movies: []
+    page: 1,
+    yearCheck: false,
+    activeTabIndex: 0,
+    actionChecked: false,
+    adventureChecked: false,
+    animationChecked: false,
+    comedyChecked: false,
+    crimeChecked: false,
+    documentaryChecked: false,
+    dramaChecked: false,
+    familyChecked: false,
+    fantasyChecked: false,
+    historyChecked: false,
+    horrorChecked: false,
+    musicChecked: false,
+    mysteryChecked: false,
+    romanceChecked: false,
+    sciencefictionChecked: false,
+    thrillerChecked: false,
+    warChecked: false,
+    westernChecked: false,
 };
 
 const discoverReducer = (state=initialState, action) => {
@@ -61,17 +81,23 @@ const discoverReducer = (state=initialState, action) => {
                     ]
                 }
             }
-        case 'POPULATE_MOVIES':
+        case 'CHANGE_TAB':
             return {
                 ...state,
                 genres: [...state.genres],
-                movies: [...state.movies, ...action.movies],
+                activeTabIndex: action.index
             }
-        case 'RESET_DISCOVER': 
+        case 'CHANGE_SWITCH':
             return {
                 ...state,
                 genres: [...state.genres],
-                movies: [],
+                yearCheck: action.checked
+            }
+        case 'CHANGE_GENRE':
+            return {
+                ...state,
+                genres: [...state.genres],
+                [action.genre]: action.toggle
             }
         default:
             return state;

@@ -39,17 +39,20 @@ export const toggleGenre = (genre) => ({
     genre
 })
 
-export const startPopulateMovies = (movies) => {
-    return (dispatch) => {
-        dispatch(populateMovies(movies))
-    }
-}
 
-export const populateMovies = (movies) => ({
-    type: 'POPULATE_MOVIES',
-    movies
+export const onChangeTab = (index) => ({
+    type: 'CHANGE_TAB',
+    index
 })
 
-export const resetDiscover = () => ({
-    type: 'RESET_DISCOVER'
+export const onChangeSwitch = (checked) => ({
+    type: 'CHANGE_SWITCH',
+    checked
 })
+
+export const onChangeGenre = (genre, toggle) => ({
+    type: 'CHANGE_GENRE',
+    genre,
+    toggle
+})
+

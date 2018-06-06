@@ -6,7 +6,10 @@ import filterReducer from "./reducers/filtersReducer";
 import uiReducer from "./reducers/uiReducer";
 import movieInfoReducer from "./reducers/movieInfoReducer";
 import peopleInfoReducer from "./reducers/peopleInfoReducer";
-import discoverReducer from "./reducers/discoverReducer"
+import discoverReducer from "./reducers/discoverReducer";
+
+import moviesListReducer from "./reducers/moviesListReducer";
+import searchReducer from "./reducers/searchReducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -17,6 +20,8 @@ const rootReducer = {
     movieInfo: movieInfoReducer,
     peopleInfo: peopleInfoReducer,
     discover: discoverReducer,
+    moviesList: moviesListReducer,
+    search: searchReducer,
 }
 
 const configureStore = () => {

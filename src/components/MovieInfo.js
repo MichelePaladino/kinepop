@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux"
 import axios from "axios";
 import Youtube from "react-youtube";
+import uuid from "uuid";
 
 import { startSetMovieInfo, startResetMovieInfo } from "../store/actions/movieInfoActions";
 import { setMoviesModeToSearch } from "../store/actions/moviesActions";
@@ -86,7 +87,7 @@ class MovieInfo extends Component {
         </Grid>
         <div className="movieCardList">
         {this.props.movieInfo.cast.map(people => {
-          return <PeopleCard job={people.job} key={people.id} id={people.id} char={people.character} name={people.name} pic={people.profile_path} order={people.order}/>
+          return <PeopleCard job={people.job} key={uuid()} id={people.id} char={people.character} name={people.name} pic={people.profile_path} order={people.order}/>
         })}
         </div>
 

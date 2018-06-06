@@ -16,7 +16,6 @@ class SideDrawer extends Component {
   // shouldComponentUpdate(nextProps) {
   //   return this.props.ui.sideDrawer !== true;
   // }
-
   componentDidUpdate() {
     console.log("from sideDrawer.js --> componentDidUpdate")
   }
@@ -47,6 +46,9 @@ class SideDrawer extends Component {
           </Link>
           <Link className="Link" to="/movies/discover/">
             <ListItem><ListItemText>Discover Movies</ListItemText></ListItem>
+          </Link>
+          <Link className='Link' to="/movies/search/">
+            <ListItem><ListItemText><Icon strategy="ligature" use="star" />Search</ListItemText></ListItem>
           </Link>
         </DrawerContent>
       </Drawer>
