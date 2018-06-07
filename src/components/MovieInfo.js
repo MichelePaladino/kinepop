@@ -53,32 +53,29 @@ class MovieInfo extends Component {
     this.props.startResetMovieInfo();
   }
 
-
-
   render() {
     let loaded = this.props.movieInfo.loaded;
     let cover = this.props.movieInfo.backdrop_path ? `https://image.tmdb.org/t/p/original${this.props.movieInfo.backdrop_path}` :  
     "https://experienceluxury.co/wp-content/uploads/2016/08/private-cinema.jpg";
     return (loaded &&
       <div className="MovieInfo">
-        <Grid className="Grid">
-          <GridCell span="12">
-          <ImageListImage src={cover}/>
-          </GridCell>
+        <Grid className="Grid ">
+          <GridCell span="12"><ImageListImage style={{  width: '100%', maxHeight: '900px', maxWidth: "1200px", display: 'block', margin: '0 auto' }} src={cover}/></GridCell>
         </Grid>
-        <Grid className="Grid Grid__title">
-          <GridCell span="12"><Typography use="headline2" >{this.props.movieInfo.title}</Typography></GridCell>
+        <Grid className="Grid Grid__content">
+          <GridCell span="12"><Typography use="headline3" >{this.props.movieInfo.title}</Typography></GridCell>
         </Grid>
-        <Grid className="Grid">
-          <GridCell span="3">1</GridCell>
-          <GridCell span="3">2</GridCell>
-          <GridCell span="3">3</GridCell>
-          <GridCell span="3">3+</GridCell>
+        <Grid className="Grid Grid__content">
+          <GridCell span="12"><Typography use="button" >{this.props.movieInfo.tagline}</Typography></GridCell>
         </Grid>
-        <Grid className="Grid">
-          <GridCell span="4">4</GridCell>
-          <GridCell span="4">5</GridCell>
-          <GridCell span="4">6</GridCell>
+        <Grid className="Grid Grid__content">
+          <GridCell span="12"><Typography use="body1" >{this.props.movieInfo.overview}</Typography></GridCell>
+        </Grid>
+        <Grid className="Grid Grid__content">
+          <GridCell tablet="4" phone="4" span="3"><Typography use="overline">{`Release: `}</Typography><Typography use="body2">{`${this.props.movieInfo.release_date}`}</Typography></GridCell>
+          <GridCell tablet="4" phone="4" span="3"><Typography use="overline">{`Length: `}</Typography><Typography use="body2">{`${this.props.movieInfo.runtime}"`}</Typography></GridCell>
+          <GridCell tablet="4" phone="4" span="3"><Typography use="overline">{`Revenue: `}</Typography><Typography use="body2">{`${this.props.movieInfo.revenue.toFixed().replace(/(\d)(?=(\d{3})+(,|$))/g, '$1,')}$`}</Typography></GridCell>
+          <GridCell tablet="4" phone="4" span="3"><Typography use="overline">{`Budget: `}</Typography><Typography use="body2">{this.props.movieInfo.budget !== 0 ? `${this.props.movieInfo.budget.toFixed().replace(/(\d)(?=(\d{3})+(,|$))/g, '$1,')}$` : `Unknown`}</Typography></GridCell>
         </Grid>
         <Grid className="Grid">
           <GridCell span="12">

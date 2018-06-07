@@ -9,9 +9,9 @@ export const populateSearch = (movies) => ({
     movies
 })
 
-export const resetSearchMovies = () => ({
-    type: 'RESET_SEARCH_MOVIES'
-})
+// export const resetSearchMovies = () => ({
+//     type: 'RESET_SEARCH_MOVIES'
+// })
 
 export const incrementPageSearchMovies = () => ({
     type: 'INCREMENT_PAGE_SEARCH_MOVIES'
@@ -22,9 +22,9 @@ export const onTitleChange = (e) => ({
     title: e.target.value
 })
 
-export const doResetTitleFilter = () => ({
-    type: 'RESET_TITLE_FILTER'
-})
+// export const doResetTitleFilter = () => ({
+//     type: 'RESET_TITLE_FILTER'
+// })
 
 
 export const startAddSearchMovies = (movies) => {

@@ -80,9 +80,18 @@
   border: 0.1rem solid red;
 } */
 
-.Grid__title {
+
+
+/* !!!! <MovieInfo> !!!! */
+
+.MovieInfo {
+  padding: 5rem 2rem 2rem 2rem;
+}
+
+.Grid__content {
   text-align: center;
 }
+
 
 
 .Youtube {
@@ -96,15 +105,9 @@
 }
 
 
-
 /* .mdc-drawer {
   background-color: blue;
 } */
-
-.MovieInfo {
-  padding: 5rem 2rem 2rem 2rem;
-}
-
 
 .movieSearch {
   margin: 0 5rem;
@@ -129,3 +132,5 @@
     width: 21rem;
     height: 450px;
 } */
+
+

@@ -8,7 +8,7 @@ import MovieCard from "./movieCard";
 import { startSetPeopleInfo, startResetPeopleInfo } from "../store/actions/peopleInfoActions";
 // import { setMoviesModeToSearch } from "../store/actions/moviesActions";
 
-
+import { LinearProgress } from 'rmwc/LinearProgress';
 import { Grid, GridCell } from "rmwc/Grid";
 import { 
   ImageList,
@@ -51,30 +51,24 @@ class PeopleInfo extends Component {
             <div className="MovieInfo">
               <Grid className="Grid">
                 <GridCell span="12">
-                <ImageListImage src={cover}/>
+                <ImageListImage  style={{  width: '100%', maxHeight: '900px', maxWidth: "600px", display: 'block', margin: '0 auto' }} src={cover}/>
                 </GridCell>
               </Grid>
-              <Grid className="Grid Grid__title">
+              <Grid className="Grid Grid__content">
                 <GridCell span="12"><Typography use="headline2" >{this.props.peopleInfo.name}</Typography></GridCell>
+                {/* <GridCell span="12"><Typography use="subtitle1">{this.props.peopleInfo.birthday}</Typography></GridCell> */}
+                {/* <GridCell span="12"><Typography use="button">{this.props.peopleInfo.place_of_birth}</Typography></GridCell> */}
               </Grid>
-              <Grid className="Grid">
-                <GridCell span="3">1</GridCell>
-                <GridCell span="3">2</GridCell>
-                <GridCell span="3">3</GridCell>
-                <GridCell span="3">3+</GridCell>
-              </Grid>
-              <Grid className="Grid">
-                <GridCell span="4">4</GridCell>
-                <GridCell span="4">5</GridCell>
-                <GridCell span="4">6</GridCell>
-              </Grid>
+              <hr style={{border: 'none', width: '80%', height: '14px', borderRadius: '25px', boxShadow: '0px 10px 16px -5px rgba(46,46,46,1)' }} />
+              <br/>
               <div className="movieCardList">
                 {this.props.peopleInfo.cast.map(movie => {
                   return <MovieCard title={movie.title} year={movie.release_date} rating={movie.vote_average} poster={movie.poster_path} key={uuid()} id={movie.id} overview={movie.overview}/>
                 })}
               </div>
-              {this.props.peopleInfo.crew.length > 0 && <Grid className="Grid Grid__title">
-                <GridCell span="12"><Typography use="headline4" >{this.props.peopleInfo.name}: Crew</Typography></GridCell>
+              {this.props.peopleInfo.crew.length > 0 && 
+              <Grid className="Grid Grid__content">
+                <br/><GridCell span="12"><Typography use="headline2">Crew</Typography></GridCell>
               </Grid>}
               <div className="movieCardList">
                 {this.props.peopleInfo.crew.filter((movie, index) => {

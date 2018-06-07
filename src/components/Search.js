@@ -6,7 +6,7 @@ import uuid from "uuid";
 import { TextField } from 'rmwc/TextField';
 
 import MovieCard from "./movieCard";
-import { startAddSearchMovies, startPopulateSearch, resetSearchMovies, incrementPageSearchMovies, onTitleChange, doResetTitleFilter } from "../store/actions/searchActions";
+import { startAddSearchMovies, startPopulateSearch, incrementPageSearchMovies, onTitleChange } from "../store/actions/searchActions";
 
 
 class Search extends Component {
@@ -37,7 +37,6 @@ class Search extends Component {
             axios.get(`https://api.themoviedb.org/3/search/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&query=${this.props.search.title}&page=${this.props.search.page+1}`)
             .then(response => this.props.startAddSearchMovies(response.data.results));
         }    
-
     }
 
     render () {

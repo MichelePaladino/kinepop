@@ -38,17 +38,17 @@ class SideDrawer extends Component {
          <Link className="Link" to="/">
             <ListItem><ListItemText>Landing Page</ListItemText></ListItem>
           </Link>
-          <Link className='Link' to="/movies/latest/">
-            <ListItem><ListItemText><Icon strategy="ligature" use="star" />In Theaters Now</ListItemText></ListItem>
-          </Link>
-          <Link className="Link" to="/movies/popular/">
-            <ListItem><ListItemText>Popular Movies</ListItemText></ListItem>
-          </Link>
           <Link className="Link" to="/movies/discover/">
-            <ListItem><ListItemText>Discover Movies</ListItemText></ListItem>
+            <ListItem><ListItemText>DISCOVER</ListItemText></ListItem>
+          </Link>
+          <Link className='Link' to="/movies/now_playing/">
+            <ListItem><ListItemText><Icon strategy="ligature" use="star" />NOW PLAYING</ListItemText></ListItem>
+          </Link>
+          <Link className='Link' to="/movies/upcoming/">
+            <ListItem><ListItemText><Icon strategy="ligature" use="star" />UPCOMING</ListItemText></ListItem>
           </Link>
           <Link className='Link' to="/movies/search/">
-            <ListItem><ListItemText><Icon strategy="ligature" use="star" />Search</ListItemText></ListItem>
+            <ListItem><ListItemText><Icon strategy="ligature" use="star" />SEARCH</ListItemText></ListItem>
           </Link>
         </DrawerContent>
       </Drawer>

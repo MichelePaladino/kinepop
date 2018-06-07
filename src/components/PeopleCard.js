@@ -28,7 +28,7 @@ const PeopleCard = ( {char, name, pic, id, order, job } ) => {
             height: "30rem"
           }}
         />
-        <div style={{ padding: "0 1rem 1rem 1rem" }}>
+        <div style={{ padding: "0rem 1rem 0rem 1rem" }}>
           <Typography use="headline5" tag="h2">
             {name}
           </Typography>
