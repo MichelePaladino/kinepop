@@ -1,5 +1,3 @@
-import moment from "moment";
-
 const initialState = {
     sortBy: 'popularity.desc',
     startDate: '',
@@ -58,11 +56,6 @@ const discoverReducer = (state=initialState, action) => {
                 startDate: '',
                 endDate: '',
                 primaryReleaseDate: '',
-            }
-        case 'SET_RATING':
-            return {
-                ...state,
-                rating: action.rating,
             }
         case 'TOGGLE_GENRE':
             if (state.genres.includes(action.genre)) {

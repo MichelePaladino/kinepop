@@ -29,16 +29,10 @@ export const resetDates = () => ({
     type: 'RESET_DATES'
 })
 
-export const setRating = (rating) => ({
-    type: 'SET_RATING',
-    rating
-})
-
 export const toggleGenre = (genre) => ({
     type: 'TOGGLE_GENRE',
     genre
 })
-
 
 export const onChangeTab = (index) => ({
     type: 'CHANGE_TAB',

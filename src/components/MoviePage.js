@@ -3,14 +3,11 @@ import { connect } from "react-redux";
 import axios from "axios";
 import uuid from "uuid";
 
-import { TextField } from 'rmwc/TextField';
-
-import MovieCard from "./movieCard";
+import MovieCard from "./MovieCard";
 import { startSetMovies, startAddMovies } from "../store/actions/moviePageActions";
 
 
 class MoviePage extends Component {
-
     componentDidMount() {
         let mode = this.props.match.params.mode;
         window.addEventListener('scroll', this.handleScroll, { passive: true });
@@ -45,10 +42,6 @@ class MoviePage extends Component {
                 <div className='movieCardList'>
                     {this.props[mode].movies.length > 0 && this.props[mode].movies.map(movie => <MovieCard title={movie.title} year={movie.release_date} rating={movie.vote_average} poster={movie.poster_path} key={uuid()} id={movie.id} overview={movie.overview}/>)}
                 </div>
-                {/* INIZIARE QUI! 
-                -----Implementare MOVIESLIST anche qui, passando un nuovo REQUESTMOVIES da costruire QUI, 
-                e passando anche qualcosa per far sì che this.props.moviesList.movies.length sia dinamico e quindi in questo caso sia this.prop.search.movies!----
-                <MoviesList requestMovies={this.requestMovies} incrementPageMoviesList={this.props.incrementPageMoviesList}/> */}
             </div>
         )
     }

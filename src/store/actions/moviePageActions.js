@@ -23,13 +23,3 @@ export const addMovies = (movies, mode) => ({
 })
 
 
-// export const resetNowMovies = () => ({
-//     type: 'RESET_NOW_MOVIES'
-// })
-
-// export const incrementPageNowMovies = () => ({
-//     type: 'INCREMENT_PAGE_NOW_MOVIES'
-// })
-
-
-

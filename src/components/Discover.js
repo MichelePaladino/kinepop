@@ -1,39 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import uuid from "uuid";
 
-import { Icon } from 'rmwc/Icon';
+
+
 import { Select } from "rmwc/Select";
-import { TextField, TextFieldIcon, TextFieldHelperText } from 'rmwc/TextField';
+import { TextField, TextFieldHelperText } from 'rmwc/TextField';
 import { Switch } from 'rmwc/Switch';
-import { Radio } from 'rmwc/Radio';
+
 import { Checkbox } from 'rmwc/Checkbox';
-import { Button, ButtonIcon } from 'rmwc/Button';
+import { Button } from 'rmwc/Button';
 import { TabBar, Tab, TabIcon, TabIconText } from 'rmwc/Tabs';
 
-import MovieCard from "./movieCard";
 import MoviesList from "./MoviesList";
 
 import { startPopulateMoviesList, resetMoviesList, incrementPageMoviesList } from "../store/actions/moviesListActions";
-import { startOnChangeSortBy, onChangeStartDate, onChangeEndDate, onChangePrimaryReleaseDate, resetDates, setRating, toggleGenre, onChangeTab, onChangeSwitch, onChangeGenre } from "../store/actions/discoverActions";
+import { startOnChangeSortBy, onChangeStartDate, onChangeEndDate, onChangePrimaryReleaseDate, resetDates, toggleGenre, onChangeTab, onChangeSwitch, onChangeGenre } from "../store/actions/discoverActions";
 
 class Discover extends Component {
-  componentDidMount () {
-    console.log("Discover.js didMount!");
-    // window.addEventListener('scroll', this.handleScroll, { passive: true });
-    // if (this.props.moviesList.movies.length === 0) {
-    //   this.requestMovies(this.props.moviesList.page);
-    // }
-  }
-  componentDidUpdate() {
-    console.log("Discover.js didUpdate!");
-    // new props? (specifically, the movieList!) --> render again! with movies!  return (movieListWithMovies && <movieCardList ...>)
-  }
-
-  // componentWillUnmount() {
-  //   window.removeEventListener('scroll', this.handleScroll);
-  // }
 
   requestMovies = (page) => {
   const sort = this.props.discover.sortBy ? `&sort_by=${this.props.discover.sortBy}` : '';
@@ -41,27 +25,11 @@ class Discover extends Component {
   const startDate = this.props.discover.startDate ? `&primary_release_date.gte=${this.props.discover.startDate}` : '';
   const endDate = this.props.discover.endDate ? `&primary_release_date.lte=${this.props.discover.endDate}` : '';
   const genres = this.props.discover.genres.length > 0 ? `&with_genres=${this.props.discover.genres.join(',')}` : '';
-  // NOT A GOOD UX RIGHT NOW ---> const rating = this.props.discover.rating && this.props.discover.rating >= 6 ? `&vote_average.gte=${this.props.discover.rating}&vote_count.gte=999` :
-  //   this.props.discover.rating && this.props.discover.rating <= 5.9 ? `&vote_average.lte=${this.props.discover.rating}` :
-  //  '';
 
     axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8${sort}${year}${startDate}${endDate}${genres}&page=${page}`)
       .then(response => this.props.startPopulateMoviesList(response.data.results));
-// https://api.themoviedb.org/3/discover/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&sort_by=popularity.desc&primary_release_year=1990
+
   }
-
-//   handleScroll = (e) => {
-//     e.stopPropagation();
-
-//     let scrollTop = window.document.documentElement.scrollTop;
-//     let clientHeight = window.document.documentElement.clientHeight;
-//     let scrollHeight = window.document.documentElement.scrollHeight;
-
-//     if (clientHeight + scrollTop === scrollHeight) {
-//         this.requestMovies(this.props.moviesList.page + 1);
-//         this.props.incrementPageMoviesList()
-//     }
-// }
 
   render() {
     return (
@@ -76,7 +44,6 @@ class Discover extends Component {
             <Tab><TabIcon>calendar_today</TabIcon><TabIconText>Year</TabIconText></Tab>
           </TabBar>
           {this.props.discover.activeTabIndex === 0 && <Select
-            // value={this.props.discover.sortBy}
             onChange={this.props.startOnChangeSortBy}
             label="Sort by"
             placeholder=""
@@ -144,28 +111,6 @@ class Discover extends Component {
             </div>
           </div>
           }
-          {/* <div>      //REMOVED ---> NOT A GOOD UX RIGHT NOW
-            <Radio
-              label="Top-Rated Movies"
-              value="8"
-              name="ratingRadio"
-              onChange={this.props.setRating}
-            />
-
-            <Radio
-              label="High-Rated Movies"
-              value="6"
-              name="ratingRadio"
-              onChange={this.props.setRating}
-            />
-
-            <Radio
-              label="Worst-Rated Movies"
-              value="5.9"
-              name="ratingRadio"
-              onChange={this.props.setRating}
-            />
-          </div> */}
           {this.props.discover.activeTabIndex === 1 && <div>
             <Checkbox
               checked={this.props.discover.actionChecked || false}
@@ -363,13 +308,7 @@ class Discover extends Component {
 }
 
 const mapStateToProps = state => ({
-  // movies: state.movies,
-  // filters: state.filters,
-  // ui: state.ui,
-  // movieInfo: state.movieInfo,
-  // peopleInfo: state.peopleInfo,
   discover: state.discover,
-  // moviesList: state.moviesList,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -378,7 +317,6 @@ const mapDispatchToProps = dispatch => ({
   onChangeEndDate: (e) => dispatch(onChangeEndDate(e.target.value)),
   onChangePrimaryReleaseDate: (e) => dispatch(onChangePrimaryReleaseDate(e.target.value)),
   resetDates: () => dispatch(resetDates()),
-  setRating: (e) => dispatch(setRating(e.target.value)),
   toggleGenre: (genre) => dispatch(toggleGenre(genre)),
   onChangeTab: (e) => dispatch(onChangeTab(e.target.value)),
   onChangeSwitch: (checked) => dispatch(onChangeSwitch(checked)),

@@ -45,7 +45,6 @@ const movieInfoReducer = (state=initialState, {
                 title,
                 videos: videos.results,
                 similar: similar.results,
-                // cast: credits.crew.slice(0,1).concat(credits.cast.slice(0,14)),
                 cast: credits.crew.filter((movie, index) => {
                     return movie.department === "Directing" && movie.job === "Director";
                 }).concat(credits.cast.slice(0,14)).concat(credits.crew.filter((movie, index) => {

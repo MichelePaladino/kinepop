@@ -4,11 +4,6 @@ const initialState = {
 
 const uiReducer = (state=initialState, action) => {
     switch (action.type) {
-        // case "TOGGLE_SIDE_DRAWER":
-        //     return {
-        //         ...state,
-        //         sideDrawer: !state.sideDrawer
-        //     }
         case "OPEN_SIDE_DRAWER":
             return {
                 ...state,

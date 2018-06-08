@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-// import { startSetLatestMovies, startSetSearchMovie, startSearchMoreMovie, resetPage } from "../store/actions/moviesActions";
 import { openSideDrawer, closeSideDrawer } from "../store/actions/uiActions"
 
 import {
@@ -42,16 +41,10 @@ class Header extends Component {
 };
 
 const mapStateToProps = (state) => ({
-  // movies: state.movies,
-  // filters: state.filters,
   ui: state.ui,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  // startSetLatestMovies: (movies) => dispatch(startSetLatestMovies(movies)),
-  // startSetSearchMovie: (movies) => dispatch(startSetSearchMovie(movies)),
-  // resetPage: () => dispatch(resetPage()),
-  // startSearchMoreMovie: (movies) => dispatch(startSearchMoreMovie(movies)),
   openSideDrawer: () => dispatch(openSideDrawer()),
   closeSideDrawer: () => dispatch(closeSideDrawer()),
 })

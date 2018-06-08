@@ -5,9 +5,8 @@ import uuid from "uuid";
 
 import { TextField } from 'rmwc/TextField';
 
-import MovieCard from "./movieCard";
-import { startAddSearchMovies, startPopulateSearch, incrementPageSearchMovies, onTitleChange } from "../store/actions/searchActions";
-
+import MovieCard from "./MovieCard";
+import { startAddSearchMovies, startPopulateSearch, onTitleChange } from "../store/actions/searchActions";
 
 class Search extends Component {
     componentDidMount() {
@@ -18,7 +17,6 @@ class Search extends Component {
         if (prevProps.search.title !== this.props.search.title && this.props.search.title !== "") {
             axios.get(`https://api.themoviedb.org/3/search/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&query=${this.props.search.title}`)
             .then(response => this.props.startPopulateSearch(response.data.results));
-            // this.props.resetPage(); ;
         } 
     }
 
@@ -49,7 +47,6 @@ class Search extends Component {
             </div>
         )
     }
-
 } 
 
 const mapStateToProps = (state) => ({
@@ -59,7 +56,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     onTitleChange: (e) => dispatch(onTitleChange(e)),
     startPopulateSearch: (movies) => dispatch(startPopulateSearch(movies)),
-    incrementPageSearchMovies: () => dispatch(incrementPageSearchMovies()),
     startAddSearchMovies: (movies) => dispatch(startAddSearchMovies(movies)),
 })
 

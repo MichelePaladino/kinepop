@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import {
   Card,
@@ -20,7 +20,6 @@ const MovieCard = ( {title, year="", poster, id, overview, rating, onFavClick, i
     <Card style={{ width: "19.5rem", margin: "1rem 0rem" }}>
       <Link className="Link" to={`/movies/movie/${id}`}><CardPrimaryAction>
         <CardMedia
-        //   square
           style={{
             backgroundImage: `url(https://image.tmdb.org/t/p/w300_and_h450_bestv2/${art})`,
             height: "30rem"
@@ -62,21 +61,6 @@ const MovieCard = ( {title, year="", poster, id, overview, rating, onFavClick, i
           </CardAction>
         </CardActionIcons>
       </CardActions>
-      {/* <CardActions>
-        <CardActionButtons>
-          <CardAction>Read</CardAction>
-          <CardAction>Bookmark</CardAction>
-        </CardActionButtons>
-        <CardActionIcons>
-          <CardAction
-            iconToggle
-            on={{ label: "Remove from favorites", content: "favorite" }}
-            off={{ label: "Add to favorites", content: "favorite_border" }}
-          />
-          <CardAction icon use="share" />
-          <CardAction icon use="more_vert" />
-        </CardActionIcons>
-      </CardActions> */}
     </Card>
   );
 };
