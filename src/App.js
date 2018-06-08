@@ -9,7 +9,7 @@ import Discover from "./components/Discover";
 import Search from "./components/Search"; 
 import MoviePage from "./components/MoviePage";
 
-import "./styles/styles.css"
+// import "./styles/styles.css"
 
 class App extends Component {
   render() {

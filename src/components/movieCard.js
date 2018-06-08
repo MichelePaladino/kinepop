@@ -10,7 +10,6 @@ import {
   CardActionButtons,
   CardActionIcons
 } from "rmwc/Card";
-
 import { Typography } from "rmwc/Typography";
 import { Icon } from 'rmwc/Icon';
 
@@ -46,23 +45,23 @@ const MovieCard = ( {title, year="", poster, id, overview, rating, onFavClick, i
           </Typography>
         </div>
       </CardPrimaryAction></Link>
-      <CardActions >
-        <CardActionButtons>
+      <CardActions fullBleed>
+        {/* <CardActionButtons>
           <CardAction
             iconToggle onChange={(e) => onFavClick(e)}
             checked={inDatabase}
             on={{ label: "Remove from favorites", content: "favorite" }}
             off={{ label: "Add to favorites", content: "favorite_border" }}
           />
-        </CardActionButtons>
-        <CardActionIcons >
+        </CardActionButtons> */}
+        {/* <CardActionIcons > */}
           <CardAction onClick={() => window.open(`https://www.rottentomatoes.com/search/?search=${title.replace(/\W+/gi, '%20')}`, "_blank")}>
-            Search on RottenTomatoes {rating >= 8 && <Icon strategy="url" style={{width: '32px', height: '32px'}} use="https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/Art/Rotten-Tomatoes-Certified-Fresh_2x.png" />} {rating < 6 && <Icon strategy="url" style={{width: '24px', height: '24px'}} use="https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/Art/Rotten-Tomatoes-Rotten_2x.png" />} {rating >= 6 && rating < 8 && <Icon strategy="url" style={{width: '24px', height: '24px'}} use="https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/Art/Rotten%20Tomatoes-Fresh_2x.png" />}
+            {rating >= 8 && <Icon strategy="url" style={{width: '32px', height: '32px', paddingLeft: '8rem'}} use="https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/Art/Rotten-Tomatoes-Certified-Fresh_2x.png" />} {rating < 6 && <Icon strategy="url" style={{width: '24px', height: '24px', paddingLeft: '8rem'}} use="https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/Art/Rotten-Tomatoes-Rotten_2x.png" />} {rating >= 6 && rating < 8 && <Icon strategy="url" style={{width: '24px', height: '24px', paddingLeft: '8rem'}} use="https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/Art/Rotten%20Tomatoes-Fresh_2x.png" />}
           </CardAction>
-        </CardActionIcons>
-      </CardActions>
+        {/* </CardActionIcons> */}
+        </CardActions>
     </Card>
   );
-};
+}; 
 
-export default MovieCard;
+export default MovieCard; 

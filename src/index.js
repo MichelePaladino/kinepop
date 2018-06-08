@@ -4,7 +4,7 @@ import { Provider } from "react-redux"
 
 // import registerServiceWorker from "./registerServiceWorker";
 
-import "./index.css";
+
 import App from "./App";
 import configureStore from "./store/configureStore"
 
@@ -12,6 +12,8 @@ import configureStore from "./store/configureStore"
 import 'material-components-web/dist/material-components-web.min.css';
 // import "@material/button/dist/mdc.button.min.css";
 // import "@material/card/dist/mdc.card.min.css";
+import "./index.css";
+import './styles/styles.css'
 
 const store = configureStore();
 

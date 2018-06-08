@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 
-
-
 import { Select } from "rmwc/Select";
 import { TextField, TextFieldHelperText } from 'rmwc/TextField';
 import { Switch } from 'rmwc/Switch';
@@ -28,22 +26,22 @@ class Discover extends Component {
 
     axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8${sort}${year}${startDate}${endDate}${genres}&page=${page}`)
       .then(response => this.props.startPopulateMoviesList(response.data.results));
-
   }
 
   render() {
     return (
       <div>
         <div className="Discover">
-          <TabBar
+          <TabBar className="Discover__TapBar"
             activeTabIndex={this.props.discover.activeTabIndex}
             onChange={this.props.onChangeTab}
           >
-            <Tab><TabIcon>sort</TabIcon><TabIconText>Sort</TabIconText></Tab>
-            <Tab><TabIcon>movie</TabIcon><TabIconText>Genres</TabIconText></Tab>
-            <Tab><TabIcon>calendar_today</TabIcon><TabIconText>Year</TabIconText></Tab>
+            <Tab className="Discover__Tab"><TabIcon>sort</TabIcon><TabIconText>Sort</TabIconText></Tab>
+            <Tab className="Discover__Tab"><TabIcon>movie</TabIcon><TabIconText>Genres</TabIconText></Tab>
+            <Tab className="Discover__Tab"><TabIcon>calendar_today</TabIcon><TabIconText>Year</TabIconText></Tab>
           </TabBar>
           {this.props.discover.activeTabIndex === 0 && <Select
+            className="Discover__Sort"
             onChange={this.props.startOnChangeSortBy}
             label="Sort by"
             placeholder=""
@@ -91,19 +89,22 @@ class Discover extends Component {
             ]}
           />}
           {this.props.discover.activeTabIndex === 2 && 
-          <div>
+          <div className="Discover__Year">
             <Switch
               checked={!!this.props.discover.yearCheck}
               onChange={(e) => {
                   this.props.onChangeSwitch(e.target.checked);
                   this.props.resetDates();
               }}>
-              Date Range
+              Single Date | Range
             </Switch>
+            <br/>
             <div>
               <TextField disabled={this.props.discover.yearCheck} invalid={this.props.discover.primaryReleaseDate.length > 4} outlined label="year" value={this.props.discover.primaryReleaseDate} onChange={this.props.onChangePrimaryReleaseDate} withLeadingIcon='event' />
-              <TextFieldHelperText>1990</TextFieldHelperText></div>
-              <div style={{display: "flex"}}>
+              <TextFieldHelperText>1990</TextFieldHelperText>
+            </div>
+
+            <div style={{display: "flex"}}>
               <div><TextField disabled={!this.props.discover.yearCheck} invalid={this.props.discover.startDate.length > 4} outlined label="start date" value={this.props.discover.startDate} onChange={this.props.onChangeStartDate} withLeadingIcon='date_range' />
               <TextFieldHelperText>1897</TextFieldHelperText></div>
               <div><TextField disabled={!this.props.discover.yearCheck} invalid={this.props.discover.endDate.length > 4} outlined label="end date" value={this.props.discover.endDate} onChange={this.props.onChangeEndDate}/>
@@ -111,7 +112,8 @@ class Discover extends Component {
             </div>
           </div>
           }
-          {this.props.discover.activeTabIndex === 1 && <div>
+          {this.props.discover.activeTabIndex === 1 && 
+          <div className='Discover_Genres'>
             <Checkbox
               checked={this.props.discover.actionChecked || false}
               onChange={e => {
@@ -121,7 +123,7 @@ class Discover extends Component {
 
               value={28}
               >
-              Action
+              Action&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
             <Checkbox
               checked={this.props.discover.adventureChecked || false}
@@ -131,7 +133,7 @@ class Discover extends Component {
               }}
               value={12}
               >
-              Adventure
+              Adventure&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
             <Checkbox
               checked={this.props.discover.animationChecked || false}
@@ -141,7 +143,7 @@ class Discover extends Component {
               }}
               value={16}
               >
-              Animation
+              Animation&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
             <Checkbox
               checked={this.props.discover.comedyChecked || false}
@@ -151,7 +153,7 @@ class Discover extends Component {
               }}
               value={35}
               >
-              Comedy
+              Comedy&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
             <Checkbox
               checked={this.props.discover.crimeChecked || false}
@@ -161,7 +163,7 @@ class Discover extends Component {
               }}
               value={80}
               >
-              Crime
+              Crime&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
             <Checkbox
               checked={this.props.discover.documentaryChecked || false}
@@ -171,7 +173,7 @@ class Discover extends Component {
               }}
               value={99}
               >
-              Documentary
+              Documentary&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
             <Checkbox
               checked={this.props.discover.dramaChecked || false}
@@ -181,7 +183,7 @@ class Discover extends Component {
               }}
               value={18}
               >
-              Drama
+              Drama&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
             <Checkbox
               checked={this.props.discover.familyChecked || false}
@@ -191,7 +193,7 @@ class Discover extends Component {
               }}
               value={10751}
               >
-              Family
+              Family&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
             <Checkbox
               checked={this.props.discover.fantasyChecked || false}
@@ -201,7 +203,7 @@ class Discover extends Component {
               }}
               value={14}
               >
-              Fantasy
+              Fantasy&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
             <Checkbox
               checked={this.props.discover.historyChecked || false}
@@ -211,7 +213,7 @@ class Discover extends Component {
               }}
               value={36}
               >
-              Action
+              History&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
             <Checkbox
               checked={this.props.discover.horrorChecked || false}
@@ -221,7 +223,7 @@ class Discover extends Component {
               }}
               value={27}
               >
-              Horror
+              Horror&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
             <Checkbox
               checked={this.props.discover.musicChecked || false}
@@ -231,7 +233,7 @@ class Discover extends Component {
               }}
               value={10402}
               >
-              Music
+              Music&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
             <Checkbox
               checked={this.props.discover.misteryChecked || false}
@@ -241,7 +243,7 @@ class Discover extends Component {
               }}
               value={9648}
               >
-              Mystery
+              Mystery&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
             <Checkbox
               checked={this.props.discover.romanceChecked || false}
@@ -251,7 +253,7 @@ class Discover extends Component {
               }}
               value={10749}
               >
-              Romance
+              Romance&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
             <Checkbox
               checked={this.props.discover.sciencefictionChecked || false}
@@ -261,7 +263,7 @@ class Discover extends Component {
               }}
               value={878}
               >
-              Science Fiction
+              Science Fiction&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
             <Checkbox
               checked={this.props.discover.thrillerChecked || false}
@@ -271,7 +273,7 @@ class Discover extends Component {
               }}
               value={53}
               >
-              Thriller
+              Thriller&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
             <Checkbox
               checked={this.props.discover.warChecked || false}
@@ -281,7 +283,7 @@ class Discover extends Component {
               }}
               value={10752}
               >
-              War
+              War&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
             <Checkbox
               checked={this.props.discover.westernChecked || false}
@@ -291,11 +293,11 @@ class Discover extends Component {
               }}
               value={37}
               >
-              Western
+              Western&nbsp;&nbsp;&nbsp;&nbsp;
             </Checkbox>
           </div>}
 
-          <Button raised theme="secondary-bg on-secondary" onClick={() => {
+          <Button raised theme="secondary-bg on-secondary" className="Discover__Button" onClick={() => {
             this.props.resetMoviesList();
             this.requestMovies(1);
             }}
