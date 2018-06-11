@@ -19,19 +19,19 @@ class SideDrawer extends Component {
       >
         <DrawerContent className="Drawer__Content">
          <Link className="Link" to="/">
-            <ListItem><ListItemText><Icon strategy="ligature" use="star"/>LANDING</ListItemText></ListItem>
+            <ListItem><Icon strategy="ligature" use="home"/><ListItemText>&nbsp;&nbsp;LANDING</ListItemText></ListItem>
           </Link>
           <Link className="Link" to="/movies/discover/">
-            <ListItem><ListItemText><Icon strategy="ligature" use="star"/>DISCOVER</ListItemText></ListItem>
+            <ListItem><Icon strategy="ligature" use="language"/><ListItemText>&nbsp;&nbsp;&nbsp;DISCOVER</ListItemText></ListItem>
           </Link>
           <Link className='Link' to="/movies/now_playing/">
-            <ListItem><ListItemText><Icon strategy="ligature" use="star"/>NOW PLAYING</ListItemText></ListItem>
+            <ListItem><Icon strategy="ligature" use="weekend"/><ListItemText>&nbsp;&nbsp;&nbsp;NOW PLAYING</ListItemText></ListItem>
           </Link>
           <Link className='Link' to="/movies/upcoming/">
-            <ListItem><ListItemText><Icon strategy="ligature" use="star"/>UPCOMING</ListItemText></ListItem>
+            <ListItem><Icon strategy="ligature" use="theaters"/><ListItemText>&nbsp;&nbsp;&nbsp;UPCOMING</ListItemText></ListItem>
           </Link>
           <Link className='Link' to="/movies/search/">
-            <ListItem><ListItemText><Icon strategy="ligature" use="star"/>SEARCH</ListItemText></ListItem>
+            <ListItem><Icon strategy="ligature" use="search"/><ListItemText>&nbsp;&nbsp;&nbsp;SEARCH</ListItemText></ListItem>
           </Link>
         </DrawerContent>
       </Drawer>

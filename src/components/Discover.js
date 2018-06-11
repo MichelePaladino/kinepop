@@ -105,7 +105,7 @@ class Discover extends Component {
             </div>
 
             <div style={{display: "flex"}}>
-              <div><TextField disabled={!this.props.discover.yearCheck} invalid={this.props.discover.startDate.length > 4} outlined label="start date" value={this.props.discover.startDate} onChange={this.props.onChangeStartDate} withLeadingIcon='date_range' />
+              <div><TextField disabled={!this.props.discover.yearCheck} invalid={this.props.discover.startDate.length > 4} outlined label="start date" value={this.props.discover.startDate} onChange={this.props.onChangeStartDate} withLeadingIcon='event_note' />
               <TextFieldHelperText>1897</TextFieldHelperText></div>
               <div><TextField disabled={!this.props.discover.yearCheck} invalid={this.props.discover.endDate.length > 4} outlined label="end date" value={this.props.discover.endDate} onChange={this.props.onChangeEndDate}/>
               <TextFieldHelperText>2018</TextFieldHelperText></div>

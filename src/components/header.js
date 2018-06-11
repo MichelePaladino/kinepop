@@ -27,11 +27,11 @@ class Header extends Component {
         <TopAppBarRow>
           <TopAppBarSection alignStart>
             <TopAppBarNavigationIcon use="menu" />
-            <TopAppBarTitle><Link className="header__title" to="/">KinePOP</Link></TopAppBarTitle>
+            <TopAppBarTitle><Link className="header__title" style={{color: '#fbfff6'}} to="/">KinePOP</Link></TopAppBarTitle>
           </TopAppBarSection>
           <TopAppBarSection alignEnd>
             <TopAppBarActionItem aria-label="Go up" alt="Go up" onClick={this.goTop}>
-              arrow_drop_up
+              navigation
             </TopAppBarActionItem>
           </TopAppBarSection>
         </TopAppBarRow>

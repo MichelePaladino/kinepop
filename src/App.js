@@ -8,6 +8,7 @@ import PeopleInfo from "./components/PeopleInfo";
 import Discover from "./components/Discover";
 import Search from "./components/Search"; 
 import MoviePage from "./components/MoviePage";
+import LandingPage from "./components/LandingPage";
 
 // import "./styles/styles.css"
 
@@ -21,7 +22,7 @@ class App extends Component {
             </div>
             <SideDrawer />
             <Switch>
-              <Route path="/" render={() => <div>Landing Page</div>} exact/>
+              <Route path="/" component={LandingPage} exact/>
               <Route path="/movies/movie/:id" component={MovieInfo}/>
               <Route path="/movies/discover" component={Discover}/>
               <Route path="/movies/search" component={Search}/>

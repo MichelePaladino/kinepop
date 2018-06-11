@@ -3,15 +3,56 @@
 } */
 
 /* .mdc-typography {
-  color: red;
+  color: #eb0000;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.6rem;
   line-height: 1.6;
 } */
 
+.mdc-typography--headline2 {
+  color: rgba(0,0,0,.75);
+}
+.mdc-typography--headline3 {
+  color: rgba(0,0,0,.80);
+}
+.mdc-typography--button {
+  color: rgba(0,0,0,.76);
+}
+
 /* html {
   font-size: 62.5%;
 } */
+
+:root {
+  --mdc-theme-primary: #eb0000;
+  --mdc-theme-secondary: #ff5633;
+  --mdc-theme-background: #fff;
+  --mdc-theme-surface: #fff;
+  --mdc-theme-on-primary: #fff;
+  --mdc-theme-on-secondary: #fff;
+  --mdc-theme-on-surface: #000;
+  --mdc-theme-text-primary-on-background: rgba(0,0,0,.80);
+  --mdc-theme-text-secondary-on-background: rgba(0,0,0,.54);
+  --mdc-theme-text-hint-on-background: rgba(0,0,0,.38);
+  --mdc-theme-text-disabled-on-background: rgba(0,0,0,.38);
+  --mdc-theme-text-icon-on-background: rgba(0,0,0,.38);
+  --mdc-theme-text-primary-on-light: rgba(0,0,0,.87);
+  --mdc-theme-text-secondary-on-light: rgba(0,0,0,.54);
+  --mdc-theme-text-hint-on-light: rgba(0,0,0,.38);
+  --mdc-theme-text-disabled-on-light: rgba(0,0,0,.38);
+  --mdc-theme-text-icon-on-light: rgba(0,0,0,.38);
+  --mdc-theme-text-primary-on-dark: #fff;
+  --mdc-theme-text-secondary-on-dark: hsla(0,0%,100%,.7);
+  --mdc-theme-text-hint-on-dark: hsla(0,0%,100%,.5);
+  --mdc-theme-text-disabled-on-dark: hsla(0,0%,100%,.5);
+  --mdc-theme-text-icon-on-dark: hsla(0,0%,100%,.5);
+}
+
+a:-webkit-any-link {
+  color: rgba(0,0,0,.80);
+  cursor: pointer;
+  text-decoration: none;
+}
 
 /* !!!! <Discover> !!!! */
 
@@ -85,7 +126,7 @@
 }
 
 .header__title {
-  color: white;
+  /* color: white; */
   text-decoration: none;
   /* h1 {
     margin: 0;
@@ -114,14 +155,14 @@
 } */
 
 .Drawer {
-  color: red;
+  /* color: red; */
   padding-top: 3.5rem;
   
 }
 
-.Drawer .Drawer__Content {
+/* .Drawer .Drawer__Content {
   color: red;
-}
+} */
 
 
 /* .Grid {
@@ -154,7 +195,7 @@
 
 .Link {
   text-decoration: none;
-  color: orange;
+  /* color: orange; */
 }
 
 
@@ -171,7 +212,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  background-color: white;
+  /* background-color: white; */
   justify-content: space-evenly;
   margin: 0 auto;
   /* z-index: -1; */
@@ -185,5 +226,3 @@
     width: 21rem;
     height: 450px;
 } */
-
-
