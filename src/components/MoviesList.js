@@ -20,9 +20,9 @@ class MoviesList extends Component {
   handleScroll = (e) => {
     e.stopPropagation();
 
-    let scrollTop = window.document.documentElement.scrollTop;
-    let clientHeight = window.document.documentElement.clientHeight;
-    let scrollHeight = window.document.documentElement.scrollHeight;
+    let scrollTop = window.pageYOffset;
+    let clientHeight = window.innerHeight;
+    let scrollHeight = document.body.scrollHeight;
 
     if (clientHeight + scrollTop === scrollHeight) {
         this.props.requestMovies(this.props.moviesList.page + 1);

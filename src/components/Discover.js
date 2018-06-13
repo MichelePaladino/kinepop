@@ -24,8 +24,6 @@ class Discover extends Component {
   const startDate = this.props.discover.startDate ? `&primary_release_date.gte=${this.props.discover.startDate}` : '';
   const endDate = this.props.discover.endDate ? `&primary_release_date.lte=${this.props.discover.endDate}` : '';
   const genres = this.props.discover.genres.length > 0 ? `&with_genres=${this.props.discover.genres.join(',')}` : '';
-  console.log('THE APIKEY IS', API_KEY)
-
     axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}${sort}${year}${startDate}${endDate}${genres}&page=${page}`)
       .then(response => this.props.startPopulateMoviesList(response.data.results));
   }

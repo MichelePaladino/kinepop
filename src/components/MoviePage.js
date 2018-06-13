@@ -26,9 +26,9 @@ class MoviePage extends Component {
         e.stopPropagation();
 
         let mode = this.props.match.params.mode;
-        let scrollTop = window.document.documentElement.scrollTop;
-        let clientHeight = window.document.documentElement.clientHeight;
-        let scrollHeight = window.document.documentElement.scrollHeight;
+        let scrollTop = window.pageYOffset;
+        let clientHeight = window.innerHeight;
+        let scrollHeight = document.body.scrollHeight;
 
         if (clientHeight + scrollTop === scrollHeight) {
             axios.get(`https://api.themoviedb.org/3/movie/${mode}?api_key=${API_KEY}&region=US&page=${this.props[mode].page+1}`)

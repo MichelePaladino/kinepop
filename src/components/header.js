@@ -14,10 +14,6 @@ import {
   } from 'rmwc/TopAppBar';
   
 class Header extends Component {
-  componentDidUpdate() {
-    console.log("from Header.js --> componentDidUpdate")
-  }
-
   goTop = () => window.scrollTo(0, 0);
 
   render() {

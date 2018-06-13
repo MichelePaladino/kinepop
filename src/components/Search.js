@@ -29,9 +29,9 @@ class Search extends Component {
     handleScroll = (e) => {
         e.stopPropagation();
 
-        let scrollTop = window.document.documentElement.scrollTop;
-        let clientHeight = window.document.documentElement.clientHeight;
-        let scrollHeight = window.document.documentElement.scrollHeight;
+        let scrollTop = window.pageYOffset;
+        let clientHeight = window.innerHeight;
+        let scrollHeight = document.body.scrollHeight;
 
         if (clientHeight + scrollTop === scrollHeight) {
             axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${this.props.search.title}&page=${this.props.search.page+1}`)
