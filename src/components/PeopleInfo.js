@@ -10,10 +10,11 @@ import { Grid, GridCell } from "rmwc/Grid";
 import { ImageListImage } from 'rmwc/ImageList';
 import { Typography } from 'rmwc/Typography';
 
+const API_KEY=`${process.env.REACT_APP_TMDB_API_KEY}`;
 
 class PeopleInfo extends Component {
   componentDidMount() {
-      axios.get(`https://api.themoviedb.org/3/person/${this.props.match.params.id}?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&append_to_response=movie_credits`)
+      axios.get(`https://api.themoviedb.org/3/person/${this.props.match.params.id}?api_key=${API_KEY}&append_to_response=movie_credits`)
         .then(response => this.props.startSetPeopleInfo(response.data));
         window.scrollTo(0, 0);
   }

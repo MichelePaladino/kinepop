@@ -8,6 +8,8 @@ import { TextField } from 'rmwc/TextField';
 import MovieCard from "./MovieCard";
 import { startAddSearchMovies, startPopulateSearch, onTitleChange } from "../store/actions/searchActions";
 
+const API_KEY=`${process.env.REACT_APP_TMDB_API_KEY}`;
+
 class Search extends Component {
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll, { passive: true });
@@ -15,7 +17,7 @@ class Search extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.search.title !== this.props.search.title && this.props.search.title !== "") {
-            axios.get(`https://api.themoviedb.org/3/search/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&query=${this.props.search.title}`)
+            axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${this.props.search.title}`)
             .then(response => this.props.startPopulateSearch(response.data.results));
         } 
     }
@@ -32,7 +34,7 @@ class Search extends Component {
         let scrollHeight = window.document.documentElement.scrollHeight;
 
         if (clientHeight + scrollTop === scrollHeight) {
-            axios.get(`https://api.themoviedb.org/3/search/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&query=${this.props.search.title}&page=${this.props.search.page+1}`)
+            axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${this.props.search.title}&page=${this.props.search.page+1}`)
             .then(response => this.props.startAddSearchMovies(response.data.results));
         }    
     }

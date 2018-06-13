@@ -15,16 +15,18 @@ import MoviesList from "./MoviesList";
 import { startPopulateMoviesList, resetMoviesList, incrementPageMoviesList } from "../store/actions/moviesListActions";
 import { startOnChangeSortBy, onChangeStartDate, onChangeEndDate, onChangePrimaryReleaseDate, resetDates, toggleGenre, onChangeTab, onChangeSwitch, onChangeGenre } from "../store/actions/discoverActions";
 
-class Discover extends Component {
+const API_KEY=`${process.env.REACT_APP_TMDB_API_KEY}`;
 
+class Discover extends Component {
   requestMovies = (page) => {
   const sort = this.props.discover.sortBy ? `&sort_by=${this.props.discover.sortBy}` : '';
   const year = this.props.discover.primaryReleaseDate ? `&primary_release_year=${this.props.discover.primaryReleaseDate}` : '';
   const startDate = this.props.discover.startDate ? `&primary_release_date.gte=${this.props.discover.startDate}` : '';
   const endDate = this.props.discover.endDate ? `&primary_release_date.lte=${this.props.discover.endDate}` : '';
   const genres = this.props.discover.genres.length > 0 ? `&with_genres=${this.props.discover.genres.join(',')}` : '';
+  console.log('THE APIKEY IS', API_KEY)
 
-    axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=c0ba1f468f4848a2eb2a4855af9c31d8${sort}${year}${startDate}${endDate}${genres}&page=${page}`)
+    axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}${sort}${year}${startDate}${endDate}${genres}&page=${page}`)
       .then(response => this.props.startPopulateMoviesList(response.data.results));
   }
 
@@ -100,14 +102,14 @@ class Discover extends Component {
             </Switch>
             <br/>
             <div>
-              <TextField disabled={this.props.discover.yearCheck} invalid={this.props.discover.primaryReleaseDate.length > 4} outlined label="year" value={this.props.discover.primaryReleaseDate} onChange={this.props.onChangePrimaryReleaseDate} withLeadingIcon='event' />
+              <TextField disabled={this.props.discover.yearCheck} invalid={this.props.discover.primaryReleaseDate.length !== 4 && this.props.discover.primaryReleaseDate.length !== 0} outlined label="year" value={this.props.discover.primaryReleaseDate} onChange={this.props.onChangePrimaryReleaseDate} withLeadingIcon='event' theme='theme-on-secondary' />
               <TextFieldHelperText>1990</TextFieldHelperText>
             </div>
 
             <div style={{display: "flex"}}>
-              <div><TextField disabled={!this.props.discover.yearCheck} invalid={this.props.discover.startDate.length > 4} outlined label="start date" value={this.props.discover.startDate} onChange={this.props.onChangeStartDate} withLeadingIcon='event_note' />
+              <div><TextField disabled={!this.props.discover.yearCheck} invalid={this.props.discover.startDate.length !== 4 && this.props.discover.startDate.length !== 0} outlined label="start date" value={this.props.discover.startDate} onChange={this.props.onChangeStartDate} withLeadingIcon='event_note' />
               <TextFieldHelperText>1897</TextFieldHelperText></div>
-              <div><TextField disabled={!this.props.discover.yearCheck} invalid={this.props.discover.endDate.length > 4} outlined label="end date" value={this.props.discover.endDate} onChange={this.props.onChangeEndDate}/>
+              <div><TextField disabled={!this.props.discover.yearCheck} invalid={this.props.discover.endDate.length !== 4 && this.props.discover.endDate.length !== 0} outlined label="end date" value={this.props.discover.endDate} onChange={this.props.onChangeEndDate}/>
               <TextFieldHelperText>2018</TextFieldHelperText></div>
             </div>
           </div>

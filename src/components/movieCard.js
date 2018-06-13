@@ -7,8 +7,6 @@ import {
   CardMedia,
   CardAction,
   CardActions,
-  CardActionButtons,
-  CardActionIcons
 } from "rmwc/Card";
 import { Typography } from "rmwc/Typography";
 import { Icon } from 'rmwc/Icon';

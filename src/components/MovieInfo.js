@@ -13,10 +13,11 @@ import { ImageListImage } from 'rmwc/ImageList';
 
 import { Typography } from 'rmwc/Typography';
 
-class MovieInfo extends Component {
+const API_KEY=`${process.env.REACT_APP_TMDB_API_KEY}`;
 
+class MovieInfo extends Component {
   componentDidMount() {
-      axios.get(`https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&append_to_response=videos,similar,credits`)
+      axios.get(`https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=${API_KEY}&append_to_response=videos,similar,credits`)
         .then(response => this.props.startSetMovieInfo(response.data));
         window.scrollTo(0, 0);
   }

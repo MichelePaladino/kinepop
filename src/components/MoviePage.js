@@ -6,12 +6,13 @@ import uuid from "uuid";
 import MovieCard from "./MovieCard";
 import { startSetMovies, startAddMovies } from "../store/actions/moviePageActions";
 
+const API_KEY=`${process.env.REACT_APP_TMDB_API_KEY}`;
 
 class MoviePage extends Component {
     componentDidMount() {
         let mode = this.props.match.params.mode;
         window.addEventListener('scroll', this.handleScroll, { passive: true });
-        if (!this.props[mode].loaded) axios.get(`https://api.themoviedb.org/3/movie/${mode}?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&region=US`)
+        if (!this.props[mode].loaded) axios.get(`https://api.themoviedb.org/3/movie/${mode}?api_key=${API_KEY}&region=US`)
         .then(response => {
             this.props.startSetMovies(response.data.results, mode);
         })
@@ -30,7 +31,7 @@ class MoviePage extends Component {
         let scrollHeight = window.document.documentElement.scrollHeight;
 
         if (clientHeight + scrollTop === scrollHeight) {
-            axios.get(`https://api.themoviedb.org/3/movie/${mode}?api_key=c0ba1f468f4848a2eb2a4855af9c31d8&region=US&page=${this.props[mode].page+1}`)
+            axios.get(`https://api.themoviedb.org/3/movie/${mode}?api_key=${API_KEY}&region=US&page=${this.props[mode].page+1}`)
             .then(response => this.props.startAddMovies(response.data.results, mode));
         }    
     }

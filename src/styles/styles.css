@@ -1,28 +1,3 @@
-/* * {
-  box-sizing: border-box;
-} */
-
-/* .mdc-typography {
-  color: #eb0000;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 1.6rem;
-  line-height: 1.6;
-} */
-
-.mdc-typography--headline2 {
-  color: rgba(0,0,0,.75);
-}
-.mdc-typography--headline3 {
-  color: rgba(0,0,0,.80);
-}
-.mdc-typography--button {
-  color: rgba(0,0,0,.76);
-}
-
-/* html {
-  font-size: 62.5%;
-} */
-
 :root {
   --mdc-theme-primary: #eb0000;
   --mdc-theme-secondary: #ff5633;
@@ -48,6 +23,16 @@
   --mdc-theme-text-icon-on-dark: hsla(0,0%,100%,.5);
 }
 
+.mdc-typography--headline2 {
+  color: rgba(0,0,0,.75);
+}
+.mdc-typography--headline3 {
+  color: rgba(0,0,0,.80);
+}
+.mdc-typography--button {
+  color: rgba(0,0,0,.76);
+}
+
 a:-webkit-any-link {
   color: rgba(0,0,0,.80);
   cursor: pointer;
@@ -56,15 +41,15 @@ a:-webkit-any-link {
 
 /* !!!! <Discover> !!!! */
 
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__path {
+  stroke: rgba(0,0,0,.75);
+}
 
 .Discover {
   padding-top: 4.8rem;
 }
 
 .Discover__TapBar {
-  /* padding-top: 0.3rem; */
-  /* margin: 0 1rem; */
-  /* padding: 0 1rem; */
   width: 95%;
 }
 
@@ -72,19 +57,9 @@ a:-webkit-any-link {
   opacity: 0;
 }
 
-/* .mdc-tab:after, .mdc-tab:before {
-  background-color: white;
-} */
-
-/* .mdc-tab:hover:before {
-  opacity: 0;
-} */
-
 .Discover__Button {
   display: flex;
   margin: auto auto 1rem auto;
-  /* background-color: red; */
-  /* color: red; */
 }
 
 .Discover_Genres {
@@ -97,7 +72,6 @@ a:-webkit-any-link {
 
 .Discover__Sort {
   display: flex;
-  /* margin-top: 1.2rem; */
   margin: 1.4rem auto 1.4rem auto;
   width: 70%;
 }
@@ -106,75 +80,29 @@ a:-webkit-any-link {
   margin: 1.7rem auto auto auto;
   display: flex;
   flex-direction: column;
-  /* justify-content: center;
-  align-content: center; */
   align-items: center;
   width: 90%;
 }
 
-/* .mdc-text-field__input {
-  display: inline
-} */
-
 .header {
-  /* padding-bottom: 5.1rem; */
-  /* position: fixed; */
   z-index: 1000;
   position: fixed;
-  /* top: 0px; */
-  /* width: 100%; */
 }
 
 .header__title {
-  /* color: white; */
   text-decoration: none;
-  /* h1 {
-    margin: 0;
-  } */
 }
-
-
 
 .content-container {
   padding-top: 5rem;
   display: flex;
   flex-direction: column;
- 
-  /* justify-content: center;
-  align-items: center;
-  margin: 0 auto; */
-  /* padding: 4.2rem 0rem; */
-  /* max-width: 80rem; */
 }
 
-
-/* .mdc-drawer--temporary .mdc-drawer__content {
-    color: red;
-    padding-top: 5rem;
-
-} */
-
 .Drawer {
-  /* color: red; */
   padding-top: 3.5rem;
   
 }
-
-/* .Drawer .Drawer__Content {
-  color: red;
-} */
-
-
-/* .Grid {
-  border: 0.2rem solid black;
-}
-
-
-.mdc-layout-grid__cell {
-  border: 0.1rem solid red;
-} */
-
-
 
 /* !!!! <MovieInfo> !!!! */
 
@@ -186,8 +114,6 @@ a:-webkit-any-link {
   text-align: center;
 }
 
-
-
 .Youtube {
   width: 100%;
   height: 35vh;
@@ -195,34 +121,20 @@ a:-webkit-any-link {
 
 .Link {
   text-decoration: none;
-  /* color: orange; */
 }
-
-
-/* .mdc-drawer {
-  background-color: blue;
-} */
 
 .movieSearch {
   margin: 0 5rem;
-  /* z-index: -1; */
 }
 
 .movieCardList {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* background-color: white; */
   justify-content: space-evenly;
   margin: 0 auto;
-  /* z-index: -1; */
 }
 
 .Search {
   padding: 5rem 2rem 2rem 2rem;
 }
-
-/* .mdc-card__media {
-    width: 21rem;
-    height: 450px;
-} */
