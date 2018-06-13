@@ -32,8 +32,10 @@ class MoviesList extends Component {
 
   render() {
     return (
-      <div className='movieCardList'>
-        {this.props.moviesList.movies.length > 0 && this.props.moviesList.movies.map(movie => <MovieCard title={movie.title} year={movie.release_date} rating={movie.vote_average} poster={movie.poster_path} key={uuid()} id={movie.id} overview={movie.overview}/>)}
+      <div className='MoviesList'>
+        <div className='movieCardList'>
+          {this.props.moviesList.movies.length > 0 && this.props.moviesList.movies.map(movie => <MovieCard title={movie.title} year={movie.release_date} rating={movie.vote_average} poster={movie.poster_path} key={uuid()} id={movie.id} overview={movie.overview}/>)}
+        </div>
       </div>
     );
   }
