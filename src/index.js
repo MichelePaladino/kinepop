@@ -15,6 +15,7 @@ import 'material-components-web/dist/material-components-web.min.css';
 import './styles/styles.css'
 import "./index.css";
 
+require('dotenv').config();
 const store = configureStore();
 
 const startApp = (

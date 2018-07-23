@@ -18,7 +18,7 @@ class LandingPage extends Component {
           </GridCell>
           <GridCell span='12' style={{textAlign:'center', color:'rgba(0,0,0,.75)'}}>
             <ImageListImage  style={{height: '178px', width: "178px", display: 'block', margin: '0 auto', borderRadius:'40%', marginBottom:'0.3rem' }} src={'https://image.ibb.co/mM9rDT/Screen_Shot_2018_06_11_at_20_40_09.png'}/>
-            <a rel="noopener noreferrer" target="_blank" href="https://www.google.com/"><Icon strategy="className" basename="icon" prefix="ion-" use="logo-github" style={{fontSize: '48px'}}/></a>&nbsp;&nbsp;
+            <a rel="noopener noreferrer" target="_blank" href="https://github.com/MichelePaladino/"><Icon strategy="className" basename="icon" prefix="ion-" use="logo-github" style={{fontSize: '48px'}}/></a>&nbsp;&nbsp;
             <a rel="noopener noreferrer" target="_blank" href="https://www.google.com/"><Icon strategy="className" basename="icon" prefix="ion-" use="logo-linkedin" style={{fontSize: '48px'}}/></a>&nbsp;&nbsp;
             <a rel="noopener noreferrer" target="_blank" href="https://www.google.com/"><Icon strategy="className" basename="icon" prefix="ion-" use="md-contact" style={{fontSize: '48px'}}/></a>
           </GridCell>
