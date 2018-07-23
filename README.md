@@ -9,9 +9,9 @@ KinePOP allows me to scan movie posters quickly, examine actors/directors filmog
 
 But this isn't the only reason I built KinePOP. 
 
-I wanted to test my skills and apply what I learned in the last 18 months.
+I wanted to **test my skills** and **apply what I learned** during the last 18 months. Was Redux essential for this project? No!
 
-Was Redux essential for this project? I don't think so. Nonetheless, I'm happy to introduce my project: this is Kinepop.
+ I'm happy to introduce my project: this is Kinepop.
 
 ## Skills & Tools
 
@@ -35,11 +35,11 @@ Was Redux essential for this project? I don't think so. Nonetheless, I'm happy t
 
 **KinePOP on iPad**
 
-![KinePOP on iPad](https://imgur.com/zfE23Qm)
+![KinePOP on iPad](src/kinepop1.png)
 
-**KinePOP on iPad**
+**KinePOP on iPhone X**
 
-![KinePOP on iPhone X](https://imgur.com/MXGInnS)
+![KinePOP on iPhone X](src/kinepop2.png)
 
 ## Dependencies
 
