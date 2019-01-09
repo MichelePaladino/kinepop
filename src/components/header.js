@@ -14,9 +14,37 @@ import {
   } from 'rmwc/TopAppBar';
   
 class Header extends Component {
+  state = {
+    visibility: 'hidden'
+  }
   goTop = () => window.scrollTo(0, 0);
+  componentDidMount () {
+    window.addEventListener('scroll', this.handleGoTopVisibility, { passive: true });
+    if (window.pageYOffset !== 0) {
+      this.setState({visibility: 'visible'});
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleGoTopVisibility);
+  }
+
+  handleGoTopVisibility = (e) => {
+    e.stopPropagation();
+
+    // let scrollTop = window.pageYOffset;
+    // let clientHeight = window.innerHeight;
+    // let scrollHeight = document.body.scrollHeight;
+
+    if (window.pageYOffset !== 0) {
+      this.setState({visibility: 'visible'})
+    } else {
+      this.setState({visibility: 'hidden'})
+    }
+  }
 
   render() {
+    const visibilityState = this.state.visibility
     const toggle = this.props.ui.sideDrawer ? (e) => this.props.closeSideDrawer(e) : (e) => this.props.openSideDrawer(e);
     return (
       <TopAppBar fixed onNav={toggle}>
@@ -26,7 +54,7 @@ class Header extends Component {
             <TopAppBarTitle><Link className="header__title" style={{color: '#fbfff6'}} to="/">KinePOP</Link></TopAppBarTitle>
           </TopAppBarSection>
           <TopAppBarSection alignEnd>
-            <TopAppBarActionItem aria-label="Go up" alt="Go up" onClick={this.goTop}>
+            <TopAppBarActionItem style={{visibility: visibilityState}} aria-label="Go up" alt="Go up" onClick={this.goTop}>
               navigation
             </TopAppBarActionItem>
           </TopAppBarSection>
