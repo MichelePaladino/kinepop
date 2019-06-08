@@ -85,7 +85,7 @@ a:-webkit-any-link {
 }
 
 .MoviesList {
-  padding: 0 1.5rem 0 1.5rem;
+  padding: 0 0.5rem 0 0.5rem;
 }
 
 .header {
@@ -141,4 +141,279 @@ a:-webkit-any-link {
 
 .Search {
   padding: 5rem 0.5rem 2rem 0.5rem;
+}
+
+.LandingPage {
+  font-family: Roboto, sans-serif;
+  margin: 0;
+  width: 100%;
+  position: relative;
+
+  display: flex;
+  flex-flow: column;
+}
+
+
+
+.LandingPage__first {
+  height: 100vh;
+  max-height: 600px;
+
+  /* background-image: linear-gradient(135deg, #fff, #ffffff 50%,#eb0000 50%, #eb0000 100%);
+  background-repeat: no-repeat; */
+  font-weight: 500;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#stripes {
+  height: 100%;
+  max-height: 600px;
+  width: 100%;
+  background-image: linear-gradient(180deg,#eb0000 98%,  #fdff8ca4 100%);
+  transform: skewY(-16deg);
+  transform-origin: 0;
+  position: absolute;
+}
+
+.LandingPage__first__box {
+  cursor: pointer;
+  /* border-width: 10px 20px;
+  border-style: solid;
+  border-color: black; */
+  padding: 2rem;
+  background-image: linear-gradient(#EEE .1em, transparent .1em), linear-gradient(90deg,#EEE .1em, transparent .1em) ;
+  background-color:#fff;
+  background-size: 6rem 1.9rem;
+  text-shadow: 1px 1px 5px rgba(44, 44, 44, 0.746);
+  box-shadow: 0px 0px 0 100vw rgba(254, 255, 192, 0.116) inset, 0 0 0 2rem black;
+  width: 65vw;
+
+  position: absolute;
+  margin-top: 20px;
+  outline: 0.5rem dotted #fdff72;
+  outline-offset: 0.8rem;
+
+  transition: text-shadow 1.4s cubic-bezier(.23,1,.32,1);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.LandingPage__first__box:hover {
+  text-shadow: 13px 13px 17px #fdff72;
+}
+
+.LandingPage__second {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  box-sizing: content-box;
+
+  display: flex;
+  justify-content: center;
+}
+
+
+.LandingPage__second__boxes {
+  color: #333;
+  display: block;
+
+  font-size: 2.5rem;
+  line-height: 100%;
+  letter-spacing: 10px;
+  font-weight: 500;
+  text-align: center;
+  
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.LandingPage__second__box {
+  cursor: pointer;
+ 
+  padding: 3rem;
+  margin: 2.5rem;
+
+  background-image: linear-gradient(#EEE .1em, transparent .1em), linear-gradient(90deg,#EEE .1em, transparent .1em) ;
+  background-color:#fff;
+  background-size: 6rem 1.9rem;
+  text-shadow: 1px 1px 5px rgba(44, 44, 44, 0.746);
+  box-shadow: 0px 0px 0 100vw rgba(254, 255, 192, 0.116) inset, 0 0 0 2rem black;
+  outline: 0.5rem dotted #fdff72;
+  outline-offset: 0.8rem;
+  transition: text-shadow 1.4s cubic-bezier(.23,1,.32,1);
+
+  flex-grow: 1;
+  flex-basis: 30vw;
+  max-width: 400px;
+
+}
+.LandingPage__second__box:hover {
+  text-shadow: 7px 7px 14px #fdff72;
+}
+
+
+
+footer {
+  background-color: #242424;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 50%;
+
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column
+}
+
+.footer__text {
+  color: #fff2dc;
+  
+  flex-grow: 1;
+  flex-basis: 100%;
+  margin: 0;
+  padding: 0.5rem 
+}
+
+.footer__logos > *:not(:last-child) {
+  margin-right: 1rem;
+}
+
+
+.LandingPage__title {
+  color: #333;
+  display: block;
+  font-size: 6rem;
+  line-height: 100%;
+
+  letter-spacing: 10px;
+}
+
+.LandingPage__text-secondary {
+  color: #eb0000;
+  display: block;
+  font-size: 2rem;
+}
+
+
+@media only screen and (max-width: 970px) {
+  .LandingPage__first {
+    max-height: 500px;
+  }
+  #stripes {
+    max-height: 500px;
+  }
+}
+
+
+@media only screen and (max-width: 700px) {
+  .LandingPage__title {
+   font-size: 5rem;
+  }
+  .LandingPage__second__box {
+   /*  outline: 0.5rem dotted #fdff72;
+    outline-offset: 0.8rem;
+    box-shadow: 0px 0px 0 100vw rgba(254, 255, 192, 0.116) inset, 0 0 0 2rem black;
+    padding: 1.5em;
+    margin: 2.5rem; */
+
+    outline: 0.45rem dotted #fdff72;
+    outline-offset: 0.5rem;
+    padding: 1em;
+    margin: 2.5rem;
+    box-shadow: 0px 0px 0 100vw rgba(254, 255, 192, 0.116) inset, 0 0 0 1.5rem black;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .LandingPage__title {
+   font-size: 4rem;
+  }
+  .LandingPage__text-secondary {
+    font-size: 1.5rem;
+  }
+  .LandingPage__first {
+    max-height: 400px;
+  }
+  #stripes {
+
+    max-height: 400px;
+ 
+  }
+}
+
+@media only screen and (max-width: 470px) {
+  .LandingPage__title {
+   font-size: 3rem;
+  }
+  .LandingPage__text-secondary {
+    font-size: 1rem;
+  }
+  .LandingPage__first__box {
+   
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .LandingPage__title {
+   font-size: 2.5rem;
+  }
+  .LandingPage__text-secondary {
+    font-size: 1rem;
+  }
+  .LandingPage__first__box {
+   
+    box-shadow: 0px 0px 0 100vw rgba(255, 192, 245, 0.116) inset, 0 0 0 1.5rem black;
+    outline: 0.5rem dotted #fdff72;
+    outline-offset: 0.5rem;
+    padding: 1rem;
+  }
+  .LandingPage__second__boxes {
+   font-size: 1.2rem
+  }
+  .LandingPage__second__box {
+    
+    margin: 2.5rem;
+    padding: 1rem;
+  
+    outline: 0.45rem dotted #fdff72;
+    outline-offset: 0.4rem;
+    
+    box-shadow: 0px 0px 0 100vw rgba(254, 255, 192, 0.116) inset, 0 0 0 1.3rem black;
+  }
+  footer {
+    
+    font-size: 1.1rem;
+    line-height: 100%;
+    
+  }
+}
+@media only screen and (max-width: 350px) {
+  .LandingPage__title {
+   font-size: 2.5rem;
+  }
+  .LandingPage__text-secondary {
+    font-size: 1rem;
+  }
+  .LandingPage__first__box {
+   
+    box-shadow: 0px 0px 0 100vw rgba(255, 192, 245, 0.116) inset, 0 0 0 1.5rem black;
+    outline: 0.5rem dotted #fdff72;
+    outline-offset: 0.5rem;
+    padding: 1rem;
+  }
+  .LandingPage__second__boxes {
+   font-size: 1.2rem
+  }
+  .LandingPage__second__box {
+    
+    margin: 1.7rem;
+  }
 }
