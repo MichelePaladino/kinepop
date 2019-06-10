@@ -125,7 +125,9 @@ a:-webkit-any-link {
 
 .Link {
   text-decoration: none;
+  color: #1f1f1f;
 }
+
 
 .movieSearch {
   margin: 0 5rem;
@@ -377,6 +379,10 @@ footer {
 }
 .footer__logos > *:not(:last-child) {
   margin-right: 1rem;
+}
+.footer__logo {
+  width: 2rem;
+  height: 2rem
 }
 
 
