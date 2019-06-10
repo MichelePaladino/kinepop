@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import asyncComponent from "./components/AsyncComponent";
 
-import Header from "./components/Header";
-import SideDrawer from "./components/SideDrawer";
-import MovieInfo from "./components/MovieInfo";
-import PeopleInfo from "./components/PeopleInfo";
-import Discover from "./components/Discover";
-import Search from "./components/Search"; 
-import MoviePage from "./components/MoviePage";
-import LandingPage from "./components/LandingPage";
+const AsyncHeader = asyncComponent(() => import("./components/Header"));
+const AsyncSideDrawer = asyncComponent(() => import("./components/SideDrawer"));
+const AsyncMovieInfo = asyncComponent(() => import("./components/MovieInfo"));
+const AsyncPeopleInfo = asyncComponent(() => import("./components/PeopleInfo"));
+const AsyncDiscover = asyncComponent(() => import("./components/Discover"));
+const AsyncSearch = asyncComponent(() => import("./components/Search"));
+const AsyncMoviePage = asyncComponent(() => import("./components/MoviePage"));
+const AsyncLandingPage = asyncComponent(() => import("./components/LandingPage"));
 
-// import "./styles/styles.css"
 
 class App extends Component {
   render() {
@@ -18,16 +18,16 @@ class App extends Component {
       <Router>
           <div>
             <div className="header">
-              <Header />
+              <AsyncHeader />
             </div>
-            <SideDrawer />
+            <AsyncSideDrawer />
             <Switch>
-              <Route path="/" component={LandingPage} exact/>
-              <Route path="/movies/movie/:id" component={MovieInfo}/>
-              <Route path="/movies/discover" component={Discover}/>
-              <Route path="/movies/search" component={Search}/>
-              <Route path="/movies/:mode" render={props => <MoviePage key={Date.now()} {...props} />}/>
-              <Route path="/people/:id" render={props => <PeopleInfo key={Date.now()} {...props} />}/>
+              <Route path="/" component={AsyncLandingPage} exact/>
+              <Route path="/movies/movie/:id" component={AsyncMovieInfo}/>
+              <Route path="/movies/discover" component={AsyncDiscover}/>
+              <Route path="/movies/search" component={AsyncSearch}/>
+              <Route path="/movies/:mode" render={props => <AsyncMoviePage key={Date.now()} {...props} />}/>
+              <Route path="/people/:id" render={props => <AsyncPeopleInfo key={Date.now()} {...props} />}/>
             </Switch>
           </div>
       </Router>

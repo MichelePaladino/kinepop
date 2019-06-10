@@ -12,7 +12,7 @@ class LandingPage extends Component {
   scrollToContent = (section) => {
     let navbarLen = window.innerWidth >= 600 ? 64 : 56
     let offsetTop = this[section].current.offsetTop - navbarLen
-    window.scrollTo({top: offsetTop + 50, left: 0, behavior: 'smooth'})
+    window.scrollTo({top: offsetTop + 40, left: 0, behavior: 'smooth'})
   }
   render() {
     console.log(this.two)
@@ -43,13 +43,13 @@ class LandingPage extends Component {
             <Icon strategy="url" style={{width: '32px', height: '32px'}} use="https://www.rottentomatoes.com/assets/pizza-pie/images/icons/global/new-upright.ac91cc241ac.png" />
           </div>
         </div>
-        <LazyLoad height={600} offset={80}><div className='LandingPage__second' ref={this.two}>
+        <LazyLoad height={600}><div className='LandingPage__second firstOfSeries' ref={this.two}>
             <div className='LandingPage__second__discover'>
-              <img className='LandingPage__second__discover__img' src='/images/kinepop.jpg'/>
+              <img className='LandingPage__second__discover__img' src='/images/kinepop.jpg' alt='Phone mockup'/>
               <div className='LandingPage__second__discover__text'>The best algorithm to choose the next movie to watch? Yourself!</div>
             </div>
         </div></LazyLoad>
-        <LazyLoad height={600} offset={80}><div className='LandingPage__second pinkback'>
+        <LazyLoad height={600}><div className='LandingPage__second pinkback'>
             <div className='LandingPage__second__discover'>
               {/* <img className='LandingPage__second__discover__img' src='/images/1k.png'/> */}
               <div className="phone">
@@ -59,7 +59,7 @@ class LandingPage extends Component {
                 
                 
                 <div className="screen">
-                  <video preload={'auto'}  id="video" autoPlay loop muted>
+                  <video preload={'auto'} id="video" autoPlay loop muted playsInline >
                    <source src="/images/disc.mp4" type={'video/mp4'}></source>
                   </video> 
                 </div>
@@ -74,7 +74,7 @@ class LandingPage extends Component {
               <div className='LandingPage__second__discover__text LandingPage__second__discover__text-reverse'>KinePOP, give me the best drama movies of 2013!</div>
             </div>
         </div></LazyLoad>
-        <LazyLoad height={600} offset={80}><div className='LandingPage__second'>
+        <LazyLoad height={600}><div className='LandingPage__second'>
             <div className='LandingPage__second__discover'>
               {/* <img className='LandingPage__second__discover__img' src='/images/1k.png'/> */}
               <div className="phone">
@@ -84,7 +84,7 @@ class LandingPage extends Component {
                 
                 
                 <div className="screen">
-                  <video preload={'auto'}  id="video" autoPlay loop muted>
+                  <video preload={'auto'}  id="video" autoPlay loop muted playsInline >
                    <source src="/images/pulp.mp4" type={'video/mp4'}></source>
                   </video> 
                 </div>
