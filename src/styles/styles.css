@@ -187,7 +187,7 @@ a:-webkit-any-link {
   background-image: linear-gradient(#EEE .1em, transparent .1em), linear-gradient(90deg,#EEE .1em, transparent .1em) ;
   background-color:#fff;
   background-size: 6rem 1.9rem;
-  text-shadow: 1px 1px 5px rgba(44, 44, 44, 0.746);
+  text-shadow: 3px 2px 4px rgba(131, 131, 131, 0.657);
   box-shadow: 0px 0px 0 100vw rgba(254, 255, 192, 0.116) inset, 0 0 0 2rem black;
   width: 65vw;
 
@@ -204,62 +204,154 @@ a:-webkit-any-link {
   flex-direction: column;
 }
 
+.pinkback {
+  background-color: #79797910;
+}
+
 .LandingPage__first__box:hover {
   text-shadow: 13px 13px 17px #fdff72;
 }
 
 .LandingPage__second {
-  margin-top: 4rem;
-  margin-bottom: 2rem;
-  box-sizing: content-box;
-
   display: flex;
   justify-content: center;
-}
-
-
-.LandingPage__second__boxes {
-  color: #333;
-  display: block;
-
-  font-size: 2.5rem;
-  line-height: 100%;
-  letter-spacing: 10px;
-  font-weight: 500;
-  text-align: center;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
   
+}
+.LandingPage__second__discover {
+  width: 100%;
 
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
 }
-
-
-.LandingPage__second__box {
-  cursor: pointer;
- 
-  padding: 3rem;
-  margin: 2.5rem;
-
-  background-image: linear-gradient(#EEE .1em, transparent .1em), linear-gradient(90deg,#EEE .1em, transparent .1em) ;
-  background-color:#fff;
-  background-size: 6rem 1.9rem;
-  text-shadow: 1px 1px 5px rgba(44, 44, 44, 0.746);
-  box-shadow: 0px 0px 0 100vw rgba(254, 255, 192, 0.116) inset, 0 0 0 2rem black;
-  outline: 0.5rem dotted #fdff72;
-  outline-offset: 0.8rem;
-  transition: text-shadow 1.4s cubic-bezier(.23,1,.32,1);
-
+.LandingPage__second__discover__img {
+  width:  250px;
+  margin: 1.2rem;
+}
+.LandingPage__second__discover__text {
+  font-size: 3.5rem;
+/*   line-height: 100%; */
+  font-weight: 200;
+  color: #4e4e4e;
+  flex-basis: 45vw;
   flex-grow: 1;
-  flex-basis: 30vw;
-  max-width: 400px;
-
+  max-width: 45vw;
+  line-height: 1.4;
+  letter-spacing: 1px;
+  text-align: right;
+  margin: 1.2rem;
+  text-shadow: 3px 2px 4px rgba(131, 131, 131, 0.657);
 }
-.LandingPage__second__box:hover {
-  text-shadow: 7px 7px 14px #fdff72;
+.LandingPage__second__discover__text-reverse {
+  order: -10;
+  text-align: left;
 }
 
+.phone{
+  background: rgb(250, 250, 250);
+  width:280px;
+  height:596px;
+  
+  margin: 1.2rem;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  border: 5px solid lightgrey;
+  border-radius: 30px;
+/*   box-shadow: 0 0 46px 0px rgba(54, 54, 54, 0.507); */
+}
+video {
+  width: 100%;
+  height: auto;
+}
+.screen {
+  position:relative;
+  top: 45px;
+  margin:auto;
+  background:rgba(255, 255, 255, 0.924);
+  width:90%;
+  height: 75%;
+  border-radius:3px;
+  border: 2px solid rgba(68, 68, 68, 0.753);
+}
+
+.speaker {
+  position:relative;
+  top:38px;
+  background:#5d5d5d;
+  margin:auto;
+  width:50px;
+  height:5px;
+  border-radius:5px;
+}
+
+.sensor {
+  position:relative;
+  top:23px;
+  left:100px;
+  background:#5d5d5d;
+  width:11px;
+  height:11px;
+  border-radius:100%;
+}
+
+.camera {
+  position:relative;
+  top:20px;
+  background:#5d5d5d;
+  margin:auto;
+  width:7px;
+  height:7px;
+  border-radius:100%;
+}
+
+
+.button {
+  position:relative;
+  top:63px;
+ /* background:linear-gradient(135deg, #919191,#e0e0e0);*/
+  border: 3px solid #5a5a5a;
+  margin:auto;
+  width:45px;
+  height:45px;
+  border-radius:100%;
+  box-shadow: inset 2px 2px 0px 0px rgba(0,0,0,.3), inset 5px 5px 0px 0px rgba(0,0,0,.1);
+}
+
+
+.ext{
+  position:relative;
+  border-radius:3px;
+  background:#8a8a8a;
+}
+
+.vup {
+  height:38px;
+  width:2px;
+  bottom:450px;
+  left:-7px;
+    border: 1px solid rgb(226, 226, 226)
+}
+
+.vdown {
+  height:38px;
+  width:2px;
+  bottom:435px;
+  left:-7px;
+    border: 1px solid rgb(226, 226, 226)
+}
+
+.power {
+  height:38px;
+  width:2px;
+  bottom:520px;
+  left:283px;
+  border: 1px solid rgb(226, 226, 226)
+}
 
 
 footer {
@@ -279,9 +371,11 @@ footer {
   flex-grow: 1;
   flex-basis: 100%;
   margin: 0;
-  padding: 0.5rem 
+  padding: 0.5rem;
 }
-
+.footer__logos {
+  margin-top: 0.5rem;
+}
 .footer__logos > *:not(:last-child) {
   margin-right: 1rem;
 }
@@ -293,7 +387,7 @@ footer {
   font-size: 6rem;
   line-height: 100%;
 
-  letter-spacing: 10px;
+  letter-spacing: 7px;
 }
 
 .LandingPage__text-secondary {
@@ -303,12 +397,22 @@ footer {
 }
 
 
-@media only screen and (max-width: 970px) {
+@media only screen and (max-width: 975px) {
   .LandingPage__first {
     max-height: 500px;
   }
   #stripes {
     max-height: 500px;
+  }
+  .LandingPage__second__discover__text {
+    font-size: 3.5rem;
+  /*   line-height: 100%; */
+    font-weight: 200;
+    color: #1f1f1f;
+    flex-basis: 50vw;
+    line-height: 1.4;
+    letter-spacing: 1px;
+    text-align: right;
   }
 }
 
@@ -317,19 +421,24 @@ footer {
   .LandingPage__title {
    font-size: 5rem;
   }
-  .LandingPage__second__box {
-   /*  outline: 0.5rem dotted #fdff72;
-    outline-offset: 0.8rem;
-    box-shadow: 0px 0px 0 100vw rgba(254, 255, 192, 0.116) inset, 0 0 0 2rem black;
-    padding: 1.5em;
-    margin: 2.5rem; */
+  .LandingPage__second__discover__text {
+    font-size: 2.5rem;
+   }
+}
 
-    outline: 0.45rem dotted #fdff72;
-    outline-offset: 0.5rem;
-    padding: 1em;
-    margin: 2.5rem;
-    box-shadow: 0px 0px 0 100vw rgba(254, 255, 192, 0.116) inset, 0 0 0 1.5rem black;
-  }
+@media only screen and (max-width: 666px) {
+  .LandingPage__second__discover__text {
+    order: -10;
+    text-align: center;
+    max-width: 85vw;
+   }
+}
+
+
+@media only screen and (max-width: 580px) {
+  .LandingPage__second__discover__text {
+    font-size: 2rem;
+   }
 }
 
 @media only screen and (max-width: 550px) {
@@ -343,9 +452,7 @@ footer {
     max-height: 400px;
   }
   #stripes {
-
     max-height: 400px;
- 
   }
 }
 
@@ -375,19 +482,7 @@ footer {
     outline-offset: 0.5rem;
     padding: 1rem;
   }
-  .LandingPage__second__boxes {
-   font-size: 1.2rem
-  }
-  .LandingPage__second__box {
-    
-    margin: 2.5rem;
-    padding: 1rem;
-  
-    outline: 0.45rem dotted #fdff72;
-    outline-offset: 0.4rem;
-    
-    box-shadow: 0px 0px 0 100vw rgba(254, 255, 192, 0.116) inset, 0 0 0 1.3rem black;
-  }
+
   footer {
     
     font-size: 1.1rem;
@@ -397,23 +492,30 @@ footer {
 }
 @media only screen and (max-width: 350px) {
   .LandingPage__title {
-   font-size: 2.5rem;
+   font-size: 2.1rem;
   }
   .LandingPage__text-secondary {
     font-size: 1rem;
   }
   .LandingPage__first__box {
-   
     box-shadow: 0px 0px 0 100vw rgba(255, 192, 245, 0.116) inset, 0 0 0 1.5rem black;
     outline: 0.5rem dotted #fdff72;
     outline-offset: 0.5rem;
     padding: 1rem;
   }
-  .LandingPage__second__boxes {
-   font-size: 1.2rem
+
+  .sensor {
+    display: none
   }
-  .LandingPage__second__box {
-    
-    margin: 1.7rem;
+
+  .screen {
+    position:relative;
+    top: 45px;
+    margin:auto;
+    background:rgba(255, 255, 255, 0.924);
+    width:93%;
+    height: 75%;
+    border-radius:3px;
+    border: 2px solid rgba(68, 68, 68, 0.753);
   }
 }
